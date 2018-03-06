@@ -126,7 +126,7 @@ class Tools:
 			print self.c.INFO + "Version: %s" %(str(current_version))
 
 	def GetVersion(self):
-
+		curr = ""
 		URL = "https://github.com/ZenixIs/Crawly/blob/master/core/version.py"
 		out = requests.get(URL).text
 
