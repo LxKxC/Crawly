@@ -291,3 +291,6 @@ class SSHBrute:
 
 			finally:
 				q.task_done()
+
+	def run(self):
+		# TODO

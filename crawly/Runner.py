@@ -110,7 +110,6 @@ class Init:
 			## same for agent but for option --random-agent.
 			agent = False
 			wordlist = None
-			
 
 			self.tool.PrintHostInfos(URL)
 

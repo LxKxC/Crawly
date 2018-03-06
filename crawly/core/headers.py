@@ -128,7 +128,7 @@ class Strings:
     ./crawly.py [-u] www.apple.com [--common]
     ./crawly.py [-u] microsoft.com [--dns] [-t 50] [-w wordlists/subdom.lst] 
     ./crawly.py [-u] www.microsoft.com [--dir] [--random-agent]
-    ./crawly.py [-u] www.test.com [-c] 200,302 [--dir] 
+    ./crawly.py [-u] www.test.com [-c] 403,302 [--dir] 
     ./crawly.py [-A] www.host.com/cgi-bin/formmail.cgi [--lhost] 192.168.1.30 [--lport] 4444 [--bashdoor]
     ./crawly.py [-A] www.host.com/http -m HTTP --user admin -w passwd/list.lst -t 45
     ./crawly.py [-A] host.com/admin/index.php -m HTML -U username -P password --user admin [--err]="Error wrong pass" -w passlist.lst

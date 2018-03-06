@@ -3,6 +3,10 @@
 # Works Only on Python2.7
 
 '''
+TODO: 
+	- create docs folder /!\
+
+
 All rights reserved.
 --------------------
 This program mustn't be used as illegal purposes. ;)
@@ -22,13 +26,13 @@ Of my modules in your programs if you want.
 Example:
 --------
 
-import scan as s
+from crawly.lib import scan as s
 s.Dirbrute("www.host.com", [True/False], [True/False], 20)
 
 And the module will print all the directorys of 
 the host.
 
-Needs of classes (PARAMETERS):
+Needs of the classes (scan.py):
 ------------------------------
 Crawl()
 --> (URL, USER-AGENT)

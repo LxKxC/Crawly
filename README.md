@@ -23,7 +23,7 @@ Installation
 
 Go to directory:
 	
-	cd crawly2/
+	cd Crawly/
 
 	sudo python2.7 setup.py install
 	
