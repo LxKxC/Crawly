@@ -118,9 +118,9 @@ class Dirbrute:
 
 		if self.WORDLIST is None:
 			if self.COMMON == True:
-				self.WORDLIST = "../db/common"
+				self.WORDLIST = "crawly/db/common"
 			else:
-				self.WORDLIST = "../db/wordlist"
+				self.WORDLIST = "crawly/db/wordlist"
 
 		self.multic = False
 		if len(self.CODES) > 1:
@@ -227,7 +227,7 @@ class DNSBrute:
 		self.WORDLIST = WORDLIST
 
 		if self.WORDLIST is None:
-			self.WORDLIST = "../db/subdomains"
+			self.WORDLIST = "crawly/db/subdomains"
 
 		self.run()
 

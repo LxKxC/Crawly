@@ -76,7 +76,7 @@ class Tools:
 		URL replaced, and a booleen.
 		url, bool = "test.com", [True/False]
 		'''
-	    	## URL settings // Your http or https url is not compatible with urllib2
+	    ## URL settings // Your http or https url is not compatible with urllib2
 		## As soon as the request is complete, I will solve that for you :)
 		https = False
 
@@ -126,6 +126,7 @@ class Tools:
 			print self.c.INFO + "Version: %s" %(str(current_version))
 
 	def GetVersion(self):
+
 		URL = "https://github.com/ZenixIs/Crawly/blob/master/crawly/core/version.py"
 		out = requests.get(URL).text
 
@@ -163,4 +164,9 @@ class Tools:
 			print self.c.OH + "Crawly is up-to-date :)"
 
 		else:
-			print self.c.ERROR + "Can't upgrade crawly... Latest version installed [%s]" %(str(current_version))
+			print self.c.ERROR + "Can't upgrade crawly... Latest version installed [%s]\n" %(str(current_version))
+
+
+
+
+
