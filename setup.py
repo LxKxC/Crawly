@@ -15,7 +15,7 @@ version = re.search(
 setup(
     name = "Crawly",
     packages=find_packages(),
-    package_dir={'crawly': 'crawly/'},
+    package_dir={'crawly': 'crawly'},
     entry_points={
         'console_scripts': 
         [
