@@ -2,26 +2,48 @@
 # Part of crawly2
 
 import random
+import platform
+from colorama import *
 # Modules
 import version
 
 class Strings:
     def __init__(self):
         self.version = version.__version__
-        # --> UNIX colors
-        self.R = "\033[91m"
-        self.O = "\033[0m"
-        self.G = "\033[32m"
-        self.Y = "\033[93m"
-        self.B = "\033[94m"
-        self.BOLD = "\033[1m"
-        self.ERROR = self.R + "[ERROR] " + self.O
-        self.PASS = self.G + "[+] " + self.O
-        self.INFO = self.B + self.BOLD + "[INFO] " + self.O
-        self.MED = self.Y + "[~] " + self.O
-        self.SEMI = self.Y + "[+] " + self.O
-        self.OOPS = self.R + self.BOLD + "[OOPS!] " + self.O
-        self.OH = self.G + self.BOLD + "[OH!] " + self.O
+        self.c = colorama.Fore()
+
+        if platform.system() == ("Linux" or "Darwin"):
+            # --> UNIX colors
+            self.R = "\033[91m"
+            self.O = "\033[0m"
+            self.G = "\033[32m"
+            self.Y = "\033[93m"
+            self.B = "\033[94m"
+            self.BOLD = "\033[1m"
+            self.ERROR = self.R + "[ERROR] " + self.O
+            self.PASS = self.G + "[+] " + self.O
+            self.INFO = self.B + self.BOLD + "[INFO] " + self.O
+            self.MED = self.Y + "[~] " + self.O
+            self.SEMI = self.Y + "[+] " + self.O
+            self.OOPS = self.R + self.BOLD + "[OOPS!] " + self.O
+            self.OH = self.G + self.BOLD + "[OH!] " + self.O
+        
+        elif platform.system() == "Windows":
+            init()
+            # --> Windows colors
+            self.R = self.c.RED
+            self.O = self.c.RESET
+            self.G = self.c.GREEN
+            self.Y = self.c.YELLOW
+            self.B = self.c.BLUE
+            self.BOLD = Style.BRIGHT
+            self.ERROR = self.R + "[ERROR] " + self.O
+            self.PASS = self.G + "[+] " + self.O
+            self.INFO = self.B + self.BOLD + "[INFO] " + self.O
+            self.MED = self.Y + "[~] " + self.O
+            self.SEMI = self.Y + "[+] " + self.O
+            self.OOPS = self.R + self.BOLD + "[OOPS!] " + self.O
+            self.OH = self.G + self.BOLD + "[OH!] " + self.O
 
     def randheaders(self):
         head = [self.BOLD + '''

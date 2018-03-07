@@ -26,5 +26,5 @@ setup(
     description = "Simple web scanner.",
     long_description = description,
     author = "Helix (@ZenixIs)",
-    install_requires=['bs4', 'requests', 'dnspython', 'paramiko', 'lxml', 'httplib2'],
+    install_requires=['bs4', 'requests', 'dnspython', 'paramiko', 'lxml', 'httplib2', 'colorama'],
 )
