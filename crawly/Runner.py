@@ -3,6 +3,8 @@
 
 import sys
 from optparse import *
+import random
+import platform
 # Modules:
 from core import headers as heads
 from core import tool
@@ -85,7 +87,11 @@ class Init:
 
 		# Printing headers
 		if not options.quiet:
-			print self.headers
+			if platform.system() == "Windows":
+				print self.headers[1]
+			else:
+				print random.choice(self.headers)
+		# Windows can't read some headers... :(
 
 		if not (options.help or options.url or options.attack or options.usage or options.file or options.update or options.upgrade or options.framework):
 			print self.c.ERROR + "Not enough options."

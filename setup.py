@@ -1,10 +1,11 @@
+from setuptools import *
 import re
-from setuptools import setup, find_packages
 
-with open("README.md", "rb") as f:
-    description = f.read().decode("utf-8")
+with open("README.md", "rb") as file:
+    description = file.read().decode("utf-8")
 
-
+# Regex section, to find the current
+# version of the program.
 version = re.search(
     "^__version__\s*=\s*'(.*)'",
     open('crawly/core/version.py').read(),

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of crawly2
 
-import random
 import platform
 from colorama import *
 # Modules
@@ -86,7 +85,8 @@ class Strings:
 ███   ▄███   ███    ███    ▄█    ███ ███  ▀ ███  ███    ███   ███    ███ ███   ▄███ 
 ████████▀    ████████▀   ▄████████▀   ▀██████▀▄█ ████████▀    ███    █▀  ████████▀  
         ''']
-        return random.choice(head)
+        #return random.choice(head) // Windows can't read [0, 2]
+        return head
 
     def help(self):
         helpstr = '''\033[1;94mSimple python web scanner written by Helix.\033[0m

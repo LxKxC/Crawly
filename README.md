@@ -6,15 +6,16 @@
 
 Crawly is developed in [Python](https://www.python.org/) by **Helix**, for the **DGSquad** with help of MorpheusTor (Langage correction)
 
-**(Warning) Crawly works only on Py2.7**
+**(Warning) Crawly at this time, works only on Py2.7**
 
 Platforms
 ---
 
+	Windows
 	Linux
 	MacOs
 
-Tested on ArchLinux(4.15.3-1-ARCH), Ubuntu(4.13), Debian, BackBox(), Kali Linux(4.12.0-kali1-amd64)
+Tested on ArchLinux(4.15.3-1-ARCH), Ubuntu(4.13), Debian, BackBox, Kali Linux(4.12.0-kali1-amd64)
 
 Installation
 ----
@@ -26,13 +27,12 @@ Go to directory:
 	cd Crawly/
 
 	sudo python2.7 setup.py install
-	
 
 Then
 	
 	crawly
 
-crawly.py will be moved to **/usr/bin/crawly** after running the setup.
+An executable will be created with the setup.
 
 Usage
 ----
@@ -50,23 +50,23 @@ Simple Documentation
 
 Crawly has 3 scan modules :
 
-	'import scan'
+	'from crawly.lib import scan'
 	Crawl()
 	Dirbrute()
 	DNSBrute() 
 
 and at this time 5 simple attack scripts:
 
-	'import attack'
+	'from crawly.lib import attack'
 	Shellshock()
 	Bashdoor()
 	HTMLBrute()
 	HTTPBrute()
-	SSHBrute()
+	SSHBrute() # I'm working on it
 
 And some little tools:
 
-	'import tool'
+	'from crawly.core import tool'
 	GetHostInfos()
 	ReplacingURL()
 	PrintHostInfos()
@@ -77,7 +77,7 @@ How to use the functions (example):
 	>>> from crawly.lib import scan as s
 	>>> s.Crawl("www.google.com", True) # True is for a random-agent or not.
 	[!] Request under random User-Agent.
-	[+] Found URL : http://www.google.ch/setprefs?sig=0_87XNjV5P2-tqXi8BJEEeNKAQVg8%3D&amp;hl=en&amp;source=homepage&amp;sa=X&amp
+	[+] Found URL : http://www.google.ch/setprefs?sig=0_87XNjV5P2-tqXi8BJEEeNKAQVg8%3D&amp;mp
 	...
 	>>>
 	>>> help(s.Dirbrute) # To see the methods in the __init__
