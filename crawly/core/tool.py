@@ -145,13 +145,9 @@ class Tools:
 		via git :)
 		'''
 		script = """
-		sudo rm -rf /usr/share/crawly/
-		sudo rm /usr/bin/crawly
-
 		git clone https://github.com/ZenixIs/Crawly.git /tmp/crawly
 		cd /tmp/crawly
-		chmod +x setup.sh
-		./setup.sh install
+		sudo python2.7 setup.py install
 		cd ~
 		rm -rf /tmp/crawly/
 		"""
