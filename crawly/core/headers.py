@@ -10,7 +10,6 @@ import version
 class Strings:
     def __init__(self):
         self.version = version.__version__
-        self.c = colorama.Fore()
 
         if platform.system() == ("Linux" or "Darwin"):
             # --> UNIX colors
@@ -31,11 +30,11 @@ class Strings:
         elif platform.system() == "Windows":
             init()
             # --> Windows colors
-            self.R = self.c.RED
-            self.O = self.c.RESET
-            self.G = self.c.GREEN
-            self.Y = self.c.YELLOW
-            self.B = self.c.BLUE
+            self.R = Fore.RED
+            self.O = Fore.RESET
+            self.G = Fore.GREEN
+            self.Y = Fore.YELLOW
+            self.B = Fore.BLUE
             self.BOLD = Style.BRIGHT
             self.ERROR = self.R + "[ERROR] " + self.O
             self.PASS = self.G + "[+] " + self.O
