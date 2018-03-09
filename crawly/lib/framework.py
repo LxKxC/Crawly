@@ -17,15 +17,15 @@ class Framework:
 		self.ps1 = self.c.G + self.c.BOLD + "[Lix]" + self.c.O + self.c.BOLD + " >>> "
 
 	def PrintOptions(self):
-				print """Framework options:
+		print("""Framework options:
 help -- Print help of this program.
 quit, exit -- Killing the program.
 show modules
-use <module>"""
+use <module>""")
 
 
 	def ParseOptions(self):
-		params = raw_input(self.ps1).lower()
+		params = input(self.ps1).lower()
 		try:
 
 			if "help" in params:
@@ -46,7 +46,7 @@ use <module>"""
 				self.run()
 
 		except KeyboardInterrupt:
-			print "\nCTRL + C pressed, killing the framework..."
+			print("\nCTRL + C pressed, killing the framework...")
 			sys.exit(0)
 
 	def run(self):

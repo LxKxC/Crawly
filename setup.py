@@ -1,5 +1,7 @@
 from setuptools import *
+import os
 import re
+import platform
 
 with open("README.md", "rb") as file:
     description = file.read().decode("utf-8")
@@ -12,7 +14,16 @@ version = re.search(
     re.M
     ).group(1)
  
- 
+# I need to copy the wordlist in a specific
+# path to run crawly from nowhere.
+if platform.system() != "Windows":
+    script = '''
+    mkdir /usr/share/crawly/
+    mkdir /usr/share/crawly/db/
+    cp crawly/db/* /usr/share/crawly/db/
+    '''
+    os.system("bash -c '%s'" %script)
+
 setup(
     name = "Crawly",
     packages=find_packages(),

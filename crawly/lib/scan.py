@@ -8,6 +8,7 @@ import urllib2
 import dns.resolver
 import threading
 import Queue
+import platform
 
 # My modules
 from ..core import tool as core
@@ -43,11 +44,11 @@ class Crawl:
 		HOST, https = self.tools.ReplacingURL(self.URL)
 		
 		if self.agent == True:
-			print self.c.INFO + "Request under random User-Agent.\n"
-			self.opener.addheaders = [('User-agent', self.tools.randomagent())]
+			print(self.c.INFO + "Request under random User-Agent.\n")
+			self.opener.addheaders = [('User-Agent', self.tools.randomagent())]
 		else:
-			print self.c.INFO + "Base User-Agent -- {'User-Agent': 'Helix/:)'}\n"
-			self.opener.addheaders = [('User-agent', 'Helix/:)')]
+			print(self.c.INFO + "Base User-Agent -- {'User-Agent': 'Helix/:)'}\n")
+			self.opener.addheaders = [('User-Agent', 'Helix/:)')]
 
 		link = "http://" + HOST
 		if https == True:
@@ -65,7 +66,7 @@ class Crawl:
 		num = str(num)
 
 		for i in out:
-			print self.c.PASS + "Found URL : "+i
+			print(self.c.PASS + "Found URL : "+i)
 
 		## Searching .css or .js files and images ##
 		css = re.findall('href="?\'?([^"\'>]*)', read)
@@ -73,7 +74,7 @@ class Crawl:
 
 		for i in out2:
 			if str('.css') in i:
-				print self.c.PASS + "Found CSS code : "+i
+				print(self.c.PASS + "Found CSS code : "+i)
 
 		js_img = re.findall('src="?\'?([^"\'>]*)', read)
 		out3 = list(set(js_img))
@@ -81,24 +82,24 @@ class Crawl:
 		for i in out3:
 			if str('.js') in i:
 				if "https://" in i:
-					print self.c.PASS + "Found external JS link : "+i
+					print(self.c.PASS + "Found external JS link : "+i)
 				elif "http://" in i:
-					print self.c.PASS + "Found external JS link : "+i
+					print(self.c.PASS + "Found external JS link : "+i)
 				else:
-					print self.c.PASS + "Found internal JS code : "+i
+					print(self.c.PASS + "Found internal JS code : "+i)
 
 		for i in out3:
 			if str('.gif') in i:
-				print self.c.PASS + "Found image : "+i
+				print(self.c.PASS + "Found image : "+i)
 			elif str('.jpg') in i:
-				print self.c.PASS + "Found image : "+i
+				print(self.c.PASS + "Found image : "+i)
 			elif str('.jpeg') in i:
-				print self.c.PASS + "Found image : "+i
+				print(self.c.PASS + "Found image : "+i)
 			elif str('.png') in i:
-				print self.c.PASS + "Found image : "+i
+				print(self.c.PASS + "Found image : "+i)
 
-		print self.c.MED + "Found %s true URLs." %(num)
-		print self.c.INFO + "Scan finished at "+time.strftime("%H:%M:%S")
+		print(self.c.MED + "Found %s true URLs." %(num))
+		print(self.c.INFO + "Scan finished at "+time.strftime("%H:%M:%S"))
 
 class Dirbrute:
 	'''
@@ -116,11 +117,18 @@ class Dirbrute:
 		self.CODES = CODES
 		self.WORDLIST = WORDLIST
 
+		# Grrrrrr windows...
 		if self.WORDLIST is None:
 			if self.COMMON == True:
-				self.WORDLIST = "crawly/db/common"
+				if platform.system() == "Linux":
+					self.WORDLIST = "/usr/share/crawly/db/common"
+				else:
+					self.WORDLIST = "crawly/db/common"
 			else:
-				self.WORDLIST = "crawly/db/wordlist"
+				if platform.system() == "Linux":
+					self.WORDLIST = "/usr/share/crawly/db/wordlist"
+				else:
+					self.WORDLIST = "crawly/db/wordlist"
 
 		self.multic = False
 		if len(self.CODES) > 1:
@@ -150,31 +158,31 @@ class Dirbrute:
 				
 				if len(out.read()):
 					if ".pl" in str(link):
-						print self.c.PASS + "[shellshock?]: %s\n"%(link),
+						print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
 					elif ".cgi" in str(link):
-						print self.c.PASS + "[shellshock?]: %s\n"%(link),
+						print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
 					elif ".sh" in str(link):
-						print self.c.PASS + "[shellshock?]: %s\n"%(link),
+						print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
 
 					else:
-						print self.c.PASS + "Found [%d]: %s\n" %(out.code, link),
+						print(self.c.PASS + "Found [%d]: %s\n" %(out.code, link)),
 					
 			except urllib2.HTTPError as e:
 				if self.multic == True:
 					for code in self.CODES:
 						if int(code) == e.code:
-							print self.c.SEMI + "Found [%d]: %s\n"%(e.code, link),
+							print(self.c.SEMI + "Found [%d]: %s\n"%(e.code, link)),
 				else:
 					self.CODES = str(self.CODES).strip('[]')
 					self.CODES = str(self.CODES).strip("'")
 					if int(self.CODES) == e.code:
-						print self.c.SEMI + "Found [%d]: %s\n"%(e.code, link),
+						print(self.c.SEMI + "Found [%d]: %s\n"%(e.code, link)),
 				
 				pass
 
-			except urllib2.BadStatusLine:
+			except urllib2.URLError:
 				pass
-			
+
 			finally:
 				q.task_done()
 
@@ -185,16 +193,16 @@ class Dirbrute:
 		q = Queue.Queue()
 
 		if self.AGENT == True:
-			print self.c.INFO + "Using random-agent for requests."
+			print(self.c.INFO + "Using random-agent for requests.")
 		else:
-			print self.c.INFO + "Using base User-Agent for requests : 'Helix/:)'"
+			print(self.c.INFO + "Using base User-Agent for requests : 'Helix/:)'")
 
-		print self.c.MED + "Starting : "+ str(self.THREADS) + " threads..."
+		print(self.c.MED + "Starting : "+ str(self.THREADS) + " threads...")
 		
 		if self.multic == True:
-			print self.c.MED + "Searching with HTTP codes %s\n" %(str(self.CODES).strip('[]'))
+			print(self.c.MED + "Searching with HTTP codes %s\n" %(str(self.CODES).strip('[]')))
 		else:
-			print self.c.MED + "Searching with HTTP code %s\n" %(str(self.CODES).strip('[]'))
+			print(self.c.MED + "Searching with HTTP code %s\n" %(str(self.CODES).strip('[]')))
 
 
 		with open(self.WORDLIST, "r") as l:
@@ -212,7 +220,7 @@ class Dirbrute:
 		elapsed = time.time() - start
 		elapsed = round(elapsed)
 		convert = time.strftime("%M:%S", time.gmtime(elapsed))
-		print self.c.INFO + "Elapsed time: %s" %str(convert)
+		print(self.c.INFO + "Elapsed time: %s" %str(convert))
 
 class DNSBrute:
 	'''
@@ -227,14 +235,17 @@ class DNSBrute:
 		self.WORDLIST = WORDLIST
 
 		if self.WORDLIST is None:
-			self.WORDLIST = "crawly/db/subdomains"
+			if platform.system() == "Linux":
+				self.WORDLIST = "/usr/share/crawly/db/subdomains"
+			else:
+				self.WORDLIST = "crawly/db/subdomains"
 
 		self.run()
 
 	def GetNS(self):
 		ns = dns.resolver.query(self.domain, "NS")
 		for i in ns:
-			print self.c.SEMI + "Found NS records : "+str(i)
+			print(self.c.SEMI + "Found NS records : "+str(i))
 
 	def DNS(self, i, q):
 		domain, var = self.tools.ReplacingURL(self.domain)
@@ -246,7 +257,7 @@ class DNSBrute:
 				subdomain = i + "." + domain
 				dns.resolver.query(subdomain, 'a')
 
-				print self.c.PASS + "Found : "+subdomain + "\n",
+				print(self.c.PASS + "Found : "+subdomain + "\n"),
 
 			except dns.resolver.NXDOMAIN, dns.resolver.NoAnswer:
 				pass
@@ -275,5 +286,5 @@ class DNSBrute:
 
 		q.join()
 
-		print self.c.INFO + "Scan finished at: "+time.strftime('%H:%M:%S')
+		print(self.c.INFO + "Scan finished at: "+time.strftime('%H:%M:%S'))
 

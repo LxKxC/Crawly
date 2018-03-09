@@ -1,6 +1,5 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
-# Works Only on Python2.7
 
 '''
 TODO: 
@@ -57,7 +56,7 @@ DNSBrute()
 __author__		= "Helix"
 __copyright__ 	= "Copyright (c) 2018, Helix." 
 __credits__ 	= ["MorpheusTor"]
-# __version__ 	= Defined in src/core/version.py
+# __version__ 	= Defined in crawly/core/version.py
 
 # Modules:
 from crawly import Runner

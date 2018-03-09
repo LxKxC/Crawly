@@ -38,7 +38,7 @@ class Tools:
 		try:
 			IP = socket.gethostbyname(URL)
 		except socket.gaierror:
-			print self.c.ERROR + "It's not a valid URL..."
+			print(self.c.ERROR + "It's not a valid URL or the URL is not reachable...")
 			sys.exit(1)
 
 		if is_port == True:
@@ -65,10 +65,10 @@ class Tools:
 	def PrintHostInfos(self, HOST):
 		c = h.Strings()
 		URL, IP, PORT, SERVER = self.GetHostInfos(HOST)
-		print self.c.INFO + "URL to scan : " + URL
-		print self.c.INFO + "Server IP : " + IP
-		print self.c.INFO + "Port : "+PORT
-		print self.c.INFO + "Server : "+SERVER + "\n"
+		print(self.c.INFO + "URL to scan : " + URL)
+		print(self.c.INFO + "Server IP : " + IP)
+		print(self.c.INFO + "Port : "+PORT)
+		print(self.c.INFO + "Server : "+SERVER + "\n")
 
 	def ReplacingURL(self, URL):
 		'''
@@ -117,16 +117,15 @@ class Tools:
 		current_version = self.GetVersion()
 
 		if current_version > self.v:
-			print self.c.INFO + "Github crawly version : %s" %(str(current_version))
-			print self.c.INFO + "Your crawly version : %s" %(str(self.v))
-			print self.c.OH + "New version available. Type 'crawly --upgrade' to get the latest version."
+			print(self.c.INFO + "Github crawly version : %s" %(str(current_version)))
+			print(self.c.INFO + "Your crawly version : %s" %(str(self.v)))
+			print(self.c.OH + "New version available. Type 'crawly --upgrade' to get the latest version.")
 		
 		elif current_version == self.v:
-			print self.c.INFO + "Crawly is up to date."
-			print self.c.INFO + "Version: %s" %(str(current_version))
+			print(self.c.INFO + "Crawly is up to date.")
+			print(self.c.INFO + "Version: %s" %(str(current_version)))
 
 	def GetVersion(self):
-
 		URL = "https://github.com/ZenixIs/Crawly/blob/master/crawly/core/version.py"
 		out = requests.get(URL).text
 
@@ -155,12 +154,12 @@ class Tools:
 		current_version = self.GetVersion()
 
 		if current_version > self.v:
-			print self.c.INFO + "Let's upgrade Crawly..."
+			print(self.c.INFO + "Let's upgrade Crawly...")
 			os.system("bash -c '%s'" % (script))
-			print self.c.OH + "Crawly is up-to-date :)"
+			print(self.c.OH + "Crawly is up-to-date :)")
 
 		else:
-			print self.c.ERROR + "Can't upgrade crawly... Latest version installed [%s]\n" %(str(current_version))
+			print(self.c.ERROR + "Can't upgrade crawly... Latest version installed [%s]\n" %(str(current_version)))
 
 
 

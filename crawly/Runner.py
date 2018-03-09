@@ -73,8 +73,8 @@ class Init:
 
 		if HTTP_CODE is not None:
 			if " " in HTTP_CODE:
-				print self.c.ERROR + "Option -c must be declared like that : -c 403,302."
-				print self.c.ERROR + "Please remove the spaces."
+				print(self.c.ERROR + "Option -c must be declared like that : -c 403,302.")
+				print(self.c.ERROR + "Please remove the spaces.")
 				sys.exit(1)
 			
 			elif "," in HTTP_CODE:
@@ -88,24 +88,24 @@ class Init:
 		# Printing headers
 		if not options.quiet:
 			if platform.system() == "Windows":
-				print self.headers[1]
+				print(self.headers[1])
 			else:
-				print random.choice(self.headers)
+				print(random.choice(self.headers))
 		# Windows can't read some headers... :(
 
 		if not (options.help or options.url or options.attack or options.usage or options.file or options.update or options.upgrade or options.framework):
-			print self.c.ERROR + "Not enough options."
-			print self.c.ERROR + "Type 'crawly -[h/--help]' to see available options."
+			print(self.c.ERROR + "Not enough options.")
+			print(self.c.ERROR + "Type 'crawly -[h/--help]' to see available options.")
 
 		elif options.help:
-			print self.help
+			print(self.help)
 
 		elif options.usage:
-			print self.usage
+			print(self.usage)
 
 		elif options.url:
 			if (options.dir and options.common):
-				print self.c.ERROR + "Theses options are in conflict. Use only [--dir] or [--common], not both."
+				print(self.c.ERROR + "Theses options are in conflict. Use only [--dir] or [--common], not both.")
 				sys.exit(1)
 
 			## URL settings // Your http or https url is not compatible with urllib2
@@ -152,7 +152,7 @@ class Init:
 				s.DNSBrute(URL, THREADS, wordlist)
 				sys.exit(0)
 
-			print self.c.OOPS + "Humm, i don't have enough options to work, mate :)"
+			print(self.c.OOPS + "Humm, i don't have enough options to work, mate :)")
 
 		elif options.attack:
 			if options.shellshock:
@@ -169,7 +169,7 @@ class Init:
 					sys.exit(0)
 
 				elif options.method.lower() == "ssh":
-					print self.c.OOPS + "I'm working on it...."
+					print(self.c.OOPS + "I'm working on it....")
 					sys.exit(1)
 
 				elif options.method.lower() == "html":
@@ -177,7 +177,7 @@ class Init:
 					a.HTMLBrute(RHOST, USERFIELD, PASSFIELD, ERRORMSG, USER, WORDLIST, THREADS)
 					sys.exit(0)
 
-			print self.c.OOPS + "I like to eat some servers, but... There's not enough options."
+			print(self.c.OOPS + "I like to eat some servers, but... There's not enough options.")
 				
 		elif options.file:
 			'''
@@ -185,7 +185,7 @@ class Init:
 			but can read multiples URLs
 			'''
 			if (options.dir and options.common):
-				print self.c.ERROR + "Theses options are in conflict. Use only [--dir] or [--common], not both."
+				print(self.c.ERROR + "Theses options are in conflict. Use only [--dir] or [--common], not both.")
 				sys.exit(1)
 				
 			## URL settings // Your http or https url is not compatible with urllib2
@@ -204,7 +204,7 @@ class Init:
 				i = i.strip("\n")
 				URL2 = i
 
-				print "\n"
+				print("\n")
 				self.tool.PrintHostInfos(URL2)
 
 				if options.crawl:
@@ -240,7 +240,7 @@ class Init:
 			#print self.c.OH + "It's an hidden feature well done..."
 			#print self.c.INFO + "I'm working on it."
 			#sys.exit(1)
-			print self.c.OH + "Welcome to the Crawly framework..."
+			print(self.c.OH + "Welcome to the Crawly framework...")
 			self.f.run()
 
 		elif options.update:
@@ -249,7 +249,7 @@ class Init:
 
 		elif options.upgrade:
 			self.tool.Upgrade()
-                        sys.exit(0)
+			sys.exit(0)
 
 def run():
     '''

