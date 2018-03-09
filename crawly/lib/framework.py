@@ -20,34 +20,44 @@ class Framework:
 		print("""Framework options:
 help -- Print help of this program.
 quit, exit -- Killing the program.
-show modules
-use <module>""")
+show modules -- Show different modules.
+use <module> -- Use a specific module.""")
 
+	def PrintModules(self):
+		print("""Different modules:
+
+Scan		Attack
+----		------
+
+crawly 		Shellshock
+Dirbrute	Bashdoor
+DNSBrute	HTMLBrute
+...		HTTPBrute
+...		SSHBrute
+""")
 
 	def ParseOptions(self):
-		params = input(self.ps1).lower()
-		try:
+		while True:
+			params = raw_input(self.ps1).lower()
 
-			if "help" in params:
+			if "exit" in params or "quit" in params:
+				break
+
+			elif "help" in params:
 				self.PrintOptions()
-				self.run()
-
-			elif "quit" in params:
-				sys.exit(0)
-			elif "exit" in params:
-				sys.exit(0)
 
 			elif "show modules" in params:
-				pass
+				self.PrintModules()
 
-			elif "use Dirbruter" in params:
-				print "test"
+			elif params == "use":
+				print(self.c.INFO + "Not enough options.")
+
+			
 			else:
-				self.run()
-
-		except KeyboardInterrupt:
-			print("\nCTRL + C pressed, killing the framework...")
-			sys.exit(0)
+				if params == '':
+					continue
+				else:
+					print(self.c.ERROR + "Seems to be an unknown command.")
 
 	def run(self):
 		self.ParseOptions()
