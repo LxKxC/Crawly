@@ -14,8 +14,6 @@ import platform
 from ..core import tool as core
 from ..core import headers as head
 
-locker = threading.Rlock()
-
 class Crawl:
 	'''
 	This class calls the web crawler
@@ -159,16 +157,15 @@ class Dirbrute:
 				out = urllib2.urlopen(req)
 				
 				if len(out.read()):
-					with locker:
-						if ".pl" in str(link):
-							print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
-						elif ".cgi" in str(link):
-							print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
-						elif ".sh" in str(link):
-							print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
+					if ".pl" in str(link):
+						print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
+					elif ".cgi" in str(link):
+						print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
+					elif ".sh" in str(link):
+						print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
 
-						else:
-							print(self.c.PASS + "Found [%d]: %s\n" %(out.code, link)),
+					else:
+						print(self.c.PASS + "Found [%d]: %s\n" %(out.code, link)),
 					
 			except urllib2.HTTPError as e:
 				if self.multic == True:
