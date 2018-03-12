@@ -66,7 +66,7 @@ class Init:
 		RHOST = options.attack
 		LHOST = options.lhost
 		LPORT = options.lport
-		PATH = options.output
+		OUTPUT = options.output
 
 		USER = options.user
 		USERFIELD = options.userfield
@@ -88,7 +88,7 @@ class Init:
 			HTTP_CODE = ["200"]
 
 		REPORT = False
-		if PATH:
+		if OUTPUT:
 			REPORT = True
 
 		# Printing headers
