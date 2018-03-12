@@ -13,6 +13,7 @@ import platform
 # My modules
 from ..core import tool as core
 from ..core import headers as head
+from ..core import stdout
 
 class Crawl:
 	'''
@@ -107,7 +108,7 @@ class Dirbrute:
 	an host.
 	With multi-threads.
 	'''
-	def __init__(self, URL, AGENT, COMMON, WORDLIST, THREADS, CODES):
+	def __init__(self, URL, AGENT, COMMON, WORDLIST, THREADS, CODES, REPORT, OUTPUT):
 		self.tools = core.Tools()
 		self.c = head.Strings()
 		self.URL = URL
@@ -160,13 +161,14 @@ class Dirbrute:
 					if ".pl" in str(link):
 						print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
 					elif ".cgi" in str(link):
-						print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
+						stdout.CLI(self.c.PASS + "[shellshock?]: %s"%(link), True, "report.txt").write()
 					elif ".sh" in str(link):
 						print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
 
 					else:
-						print(self.c.PASS + "Found [%d]: %s\n" %(out.code, link)),
-					
+						#print(self.c.PASS + "Found [%d]: %s\n" %(out.code, link)),
+						stdout.CLI(self.c.PASS + "Found [%d]: %s" %(out.code, link), True, "report.txt")
+
 			except urllib2.HTTPError as e:
 				if self.multic == True:
 					for code in self.CODES:

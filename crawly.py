@@ -52,8 +52,7 @@ DNSBrute()
 | WORDLIST = None/"A/Path/to" 
 | (If None, a wordlist will be used in db/)
 '''
-
-__author__		= "Helix"
+__author__	= "helix"
 __copyright__ 	= "Copyright (c) 2018, Helix." 
 __credits__ 	= ["MorpheusTor"]
 # __version__ 	= Defined in crawly/core/version.py

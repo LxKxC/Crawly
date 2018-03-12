@@ -159,7 +159,7 @@ class Tools:
 			print(self.c.OH + "Crawly is up-to-date :)")
 
 		else:
-			print(self.c.ERROR + "Can't upgrade crawly... Latest version installed [%s]\n" %(str(current_version)))
+			print(self.c.ERROR + "Can't upgrade crawly... Latest version installed [%s]" %(str(current_version)))
 
 
 
