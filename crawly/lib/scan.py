@@ -116,6 +116,7 @@ class Dirbrute:
 		self.COMMON = COMMON
 		self.THREADS = THREADS
 		self.CODES = CODES
+		self.OUTPUT = OUTPUT
 		self.WORDLIST = WORDLIST
 
 		# Grrrrrr windows...

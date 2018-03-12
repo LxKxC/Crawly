@@ -31,6 +31,7 @@ class Init:
 		parser.add_option("--upgrade", action="store_true")
 		parser.add_option("-u", "--url")
 		parser.add_option("-f", "--file", help="url file")
+		parser.add_option("-o", "--output")
 		parser.add_option("--crawl", action="store_true")
 		parser.add_option("--dir", action="store_true")
 		parser.add_option("--random-agent", dest="useragent", action="store_true")
@@ -65,6 +66,7 @@ class Init:
 		RHOST = options.attack
 		LHOST = options.lhost
 		LPORT = options.lport
+		PATH = options.output
 
 		USER = options.user
 		USERFIELD = options.userfield
@@ -84,6 +86,10 @@ class Init:
 				HTTP_CODE = [HTTP_CODE]
 		else:
 			HTTP_CODE = ["200"]
+
+		REPORT = False
+		if PATH:
+			REPORT = True
 
 		# Printing headers
 		if not options.quiet:
@@ -133,7 +139,7 @@ class Init:
 				elif options.wordlist:
 					wordlist = options.wordlist
 
-				s.Dirbrute(URL, agent, common, wordlist, THREADS, HTTP_CODE)
+				s.Dirbrute(URL, agent, common, wordlist, THREADS, HTTP_CODE, REPORT, OUTPUT)
 				sys.exit(0)
 
 			elif options.common:
@@ -141,7 +147,7 @@ class Init:
 				if options.useragent:
 					agent = True
 
-				s.Dirbrute(URL, agent, common, wordlist, THREADS, HTTP_CODE)
+				s.Dirbrute(URL, agent, common, wordlist, THREADS, HTTP_CODE, REPORT, OUTPUT)
 				sys.exit(0)
 
 			elif options.dns:
