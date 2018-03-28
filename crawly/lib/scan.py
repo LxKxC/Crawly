@@ -168,12 +168,12 @@ class Dirbrute:
 				if self.multic == True:
 					for code in self.CODES:
 						if int(code) == e.code:
-							print(self.c.SEMI + "Found [%d]: %s\n"%(e.code, link)),
+							stdout.CLI(self.c.SEMI, "Found [%d]: %s" %(out.code, link), True, "report.txt").write()
 				else:
 					self.CODES = str(self.CODES).strip('[]')
 					self.CODES = str(self.CODES).strip("'")
 					if int(self.CODES) == e.code:
-						print(self.c.SEMI + "Found [%d]: %s\n"%(e.code, link)),
+						stdout.CLI(self.c.SEMI, "Found [%d]: %s" %(out.code, link), True, "report.txt").write()
 				
 				pass
 
@@ -184,6 +184,7 @@ class Dirbrute:
 				q.task_done()
 
 			if platform.system() != "Windows":
+				# There's some print fails here on windows.
 				sys.stdout.write(self.c.INFO + "Directorys to test: %d\r" % q.qsize())
 				sys.stdout.flush()
 
@@ -254,7 +255,7 @@ class DNSBrute:
 				subdomain = i + "." + self.domain
 				dns.resolver.query(subdomain, 'a')
 
-				print(self.c.PASS + "Found : "+subdomain + "\n"),
+				stdout.CLI(self.c.PASS + "Found : %s" % subdomain, True, "report.txt").write()
 
 			except dns.resolver.NXDOMAIN, dns.resolver.NoAnswer:
 				pass
@@ -264,8 +265,10 @@ class DNSBrute:
 			finally:
 				q.task_done()
 
-			sys.stdout.write(self.c.INFO + "Subdomains: [%d]\r" % q.qsize())
-			sys.stdout.flush()
+			if platform.system() != "Windows":
+				# There's some print fails here on windows.
+				sys.stdout.write(self.c.INFO + "Subdomains: [%d]\r" % q.qsize())
+				sys.stdout.flush()
 
 	def run(self):
 		q = Queue.Queue()

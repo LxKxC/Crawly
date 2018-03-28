@@ -15,7 +15,7 @@ Platforms
 	Linux
 	MacOs
 
-Tested on ArchLinux(4.15.3-1-ARCH), Ubuntu(4.13), Debian, BackBox, Kali Linux(4.12.0-kali1-amd64)
+Tested on ArchLinux(4.15.3-1-ARCH), Ubuntu(4.13), Debian, BackBox, Kali Linux(4.12.0-kali1-amd64), Windows 10.
 
 Installation
 ----
@@ -26,7 +26,7 @@ Go to directory:
 	
 	cd Crawly/
 
-	sudo python2.7 setup.py install
+	python2.7 setup.py install
 
 Then
 	
