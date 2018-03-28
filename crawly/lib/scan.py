@@ -183,8 +183,9 @@ class Dirbrute:
 			finally:
 				q.task_done()
 
-			sys.stdout.write(self.c.INFO + "Directorys to test: %d\r" % q.qsize())
-			sys.stdout.flush()
+			if platform.system() != "Windows":
+				sys.stdout.write(self.c.INFO + "Directorys to test: %d\r" % q.qsize())
+				sys.stdout.flush()
 
 	def run(self):
 		q = Queue.Queue()

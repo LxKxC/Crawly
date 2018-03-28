@@ -3,3 +3,6 @@ dnspython
 paramiko
 bs4
 lxml
+pycparser
+pynacl
+cryptography
