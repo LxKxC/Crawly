@@ -8,6 +8,7 @@ import urllib, urllib2
 import Queue
 import threading
 import base64
+import platform
 from paramiko import SSHClient
 from paramiko import AutoAddPolicy
 

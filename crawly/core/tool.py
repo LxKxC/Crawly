@@ -115,6 +115,9 @@ class Tools:
 		rm -rf /tmp/crawly/
 		"""
 
+		if platform.system() == "Windows":
+			raise WindowsError("Can't upgrade crawly at this time on windows host. --> https://github.com/ZenixIs/Crawly")
+
 		current_version = self.GetVersion()
 
 		if current_version > self.v:
