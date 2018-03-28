@@ -12,6 +12,7 @@ import platform
 
 # My modules
 from ..core import tool as core
+from ..core import http
 from ..core import headers as head
 from ..core import stdout
 
@@ -42,7 +43,7 @@ class Crawl:
 		# Replacing the URL, [-http/-https/-'/']
 		# and return a bool of the method
 		# SSL or not.
-		HOST, https = self.tools.ReplacingURL(self.URL)
+		URL = http.URI(self.URL).prepare()
 		
 		if self.agent == True:
 			print(self.c.INFO + "Request under random User-Agent.\n")
@@ -51,11 +52,7 @@ class Crawl:
 			print(self.c.INFO + "Base User-Agent -- {'User-Agent': 'Helix/:)'}\n")
 			self.opener.addheaders = [('User-Agent', 'Helix/:)')]
 
-		link = "http://" + HOST
-		if https == True:
-			link = "https://" + HOST ## Simple security.
-
-		out = self.opener.open(link)
+		out = self.opener.open(URL)
 
 		# Reading html code to find URLs.
 		# And remove duplicates links.
@@ -108,7 +105,8 @@ class Dirbrute:
 	an host.
 	With multi-threads.
 	'''
-	def __init__(self, URL, AGENT, COMMON, WORDLIST, THREADS, CODES, REPORT, OUTPUT):
+	def __init__(self, URL, AGENT, COMMON, WORDLIST, 
+		THREADS, CODES, REPORT, OUTPUT):
 		self.tools = core.Tools()
 		self.c = head.Strings()
 		self.URL = URL
@@ -139,15 +137,12 @@ class Dirbrute:
 		self.run()
 
 	def brute(self, i, q):
-		URL, https = self.tools.ReplacingURL(self.URL)
+		URL  = http.URI(self.URL).prepare()
 
 		while True:
 			i = q.get()
 
-			link = "http://" + URL + "/" + i
-			
-			if https == True:
-				link = "https://" + URL + "/" + i
+			link = URL + i
 
 			if self.AGENT == True:
 				req = urllib2.Request(link, headers={'User-Agent': self.tools.randomagent()})
@@ -159,16 +154,15 @@ class Dirbrute:
 				out = urllib2.urlopen(req)
 				
 				if len(out.read()):
-					if ".pl" in str(link):
-						print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
-					elif ".cgi" in str(link):
-						stdout.CLI(self.c.PASS + "[shellshock?]: %s"%(link), True, "report.txt").write()
-					elif ".sh" in str(link):
-						print(self.c.PASS + "[shellshock?]: %s\n"%(link)),
+					if ".pl" in link:
+						stdout.CLI(self.c.PASS, "[shellshock?]: %s"%(link), True, "report.txt").write()
+					elif ".cgi" in link:
+						stdout.CLI(self.c.PASS, "[shellshock?]: %s"%(link), True, "report.txt").write()
+					elif ".sh" in link:
+						stdout.CLI(self.c.PASS, "[shellshock?]: %s"%(link), True, "report.txt").write()
 
 					else:
-						#print(self.c.PASS + "Found [%d]: %s\n" %(out.code, link)),
-						stdout.CLI(self.c.PASS + "Found [%d]: %s" %(out.code, link), True, "report.txt")
+						stdout.CLI(self.c.PASS, "Found [%d]: %s" %(out.code, link), True, "report.txt").write()
 
 			except urllib2.HTTPError as e:
 				if self.multic == True:
@@ -251,13 +245,12 @@ class DNSBrute:
 			print(self.c.SEMI + "Found NS records : "+str(i))
 
 	def DNS(self, i, q):
-		domain, var = self.tools.ReplacingURL(self.domain)
 
 		while True:
 			i = q.get()
 
 			try:
-				subdomain = i + "." + domain
+				subdomain = i + "." + self.domain
 				dns.resolver.query(subdomain, 'a')
 
 				print(self.c.PASS + "Found : "+subdomain + "\n"),
@@ -290,4 +283,3 @@ class DNSBrute:
 		q.join()
 
 		print(self.c.INFO + "Scan finished at: "+time.strftime('%H:%M:%S'))
-

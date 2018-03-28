@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 # Modules
 from . import headers as h
 from . import version
+from . import http
 
 class Tools:
 	def __init__(self):
@@ -24,36 +25,22 @@ class Tools:
 		ex. : "URL", "IP", "PORT", "SERVER_TYPE"
 		'''
 		# Constant variable
-		URL, https = self.ReplacingURL(HOST)
-		URLb = URL
-		is_port = False
-		port = None
-
-		if ":" in URL:
-			is_port = True
-			# Splitting port to avoid socket error
-			URL, port = URL.split(":")
+		URI = http.URI(HOST)
+		URL = URI.prepare()
 
 		# Resolving URL.
 		try:
-			IP = socket.gethostbyname(URL)
+			IP = socket.gethostbyname(URI.host())
 		except socket.gaierror:
 			print(self.c.ERROR + "It's not a valid URL or the URL is not reachable...")
 			sys.exit(1)
 
-		if is_port == True:
-			PORT = port
-		else:
-			PORT = "80/443"
+		PORT = str(URI.port())
 
-		if https == True:
-			r = requests.get("https://" + URLb)
-		else:
-			r = requests.get("http://" + URLb)
+		r = requests.get(URL)
 
 		try:
-			typeserv = r.headers['Server']
-			SERVER = typeserv
+			SERVER = r.headers['Server']
 		except KeyError:
 			SERVER = "Not Resolved"
 
@@ -69,29 +56,6 @@ class Tools:
 		print(self.c.INFO + "Server IP : " + IP)
 		print(self.c.INFO + "Port : "+PORT)
 		print(self.c.INFO + "Server : "+SERVER + "\n")
-
-	def ReplacingURL(self, URL):
-		'''
-		This function returns a string of the
-		URL replaced, and a booleen.
-		url, bool = "test.com", [True/False]
-		'''
-	    ## URL settings // Your http or https url is not compatible with urllib2
-		## As soon as the request is complete, I will solve that for you :)
-		https = False
-
-		if "http://" in URL:
-			URL = URL.replace("http://", "")
-		
-		elif "https://" in URL:
-			https = True
-			URL = URL.replace("https://", "")
-		
-		## www.test.com/ -- '/' is not compatible either so I'll solve that for you :)
-		if "/" in URL:
-			URL = URL.replace("/", "")
-
-		return URL, https
 
 	def randomagent(self):
 		'''
@@ -160,8 +124,3 @@ class Tools:
 
 		else:
 			print(self.c.ERROR + "Can't upgrade crawly... Latest version installed [%s]" %(str(current_version)))
-
-
-
-
-

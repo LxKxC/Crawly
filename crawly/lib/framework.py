@@ -29,7 +29,7 @@ use <module> -- Use a specific module.""")
 Scan		Attack
 ----		------
 
-crawly 		Shellshock
+Crawler		Shellshock
 Dirbrute	Bashdoor
 DNSBrute	HTMLBrute
 ...		HTTPBrute
@@ -52,6 +52,8 @@ DNSBrute	HTMLBrute
 			elif params == "use":
 				print(self.c.INFO + "Not enough options.")
 
+			elif "use crawler" in params:
+				print("test")
 			
 			else:
 				if params == '':

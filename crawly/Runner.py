@@ -8,6 +8,7 @@ import platform
 # Modules:
 from core import headers as heads
 from core import tool
+from core import errors
 from lib import scan as s
 from lib import attack as a
 from lib import framework as f
@@ -114,16 +115,17 @@ class Init:
 				print(self.c.ERROR + "Theses options are in conflict. Use only [--dir] or [--common], not both.")
 				sys.exit(1)
 
-			## URL settings // Your http or https url is not compatible with urllib2
-			## As soon as the request is complete, I will solve that for you :)
-			https = False
 			## Common is set to false while you don't use --common option.
 			common = False
 			## same for agent but for option --random-agent.
 			agent = False
 			wordlist = None
 
-			self.tool.PrintHostInfos(URL)
+			try:
+				self.tool.PrintHostInfos(URL)
+			except errors.BadURLError:
+				print(self.c.ERROR + "BadURLError, i can't find http:// or https:// in this url.")
+				sys.exit(1)
 
 			if options.crawl:
 				if options.useragent:
@@ -193,10 +195,7 @@ class Init:
 			if (options.dir and options.common):
 				print(self.c.ERROR + "Theses options are in conflict. Use only [--dir] or [--common], not both.")
 				sys.exit(1)
-				
-			## URL settings // Your http or https url is not compatible with urllib2
-			## As soon as the request is complete, I will solve that for you :)
-			https = False
+
 			## Common is set to false while you don't use --common option.
 			common = False
 			## same for agent but for option --random-agent.
