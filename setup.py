@@ -27,7 +27,7 @@ if platform.system() != "Windows":
 else:
     script = '''
     cd crawly\db\
-    mkdir C:\Python27\Scripts\db\
+    md C:\Python27\Scripts\db\
     copy * C:\Python27\Scripts\db\
     '''
     os.system(script)
