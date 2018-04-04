@@ -53,7 +53,7 @@ DNSBrute	HTMLBrute
 				print(self.c.INFO + "Not enough options.")
 
 			elif "use crawler" in params:
-				print("test")
+				pass
 			
 			else:
 				if params == '':

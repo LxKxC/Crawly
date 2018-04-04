@@ -24,6 +24,14 @@ if platform.system() != "Windows":
     '''
     os.system("bash -c '%s'" %script)
 
+else:
+    script = '''
+    cd \crawly\db\
+    mkdir C:\Python27\Scripts\db\
+    copy * C:\Python27\Scripts\db\
+    '''
+    os.system(script)
+
 setup(
     name = "Crawly",
     packages=find_packages(),

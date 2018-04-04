@@ -120,15 +120,15 @@ class Dirbrute:
 		# Grrrrrr windows...
 		if self.WORDLIST is None:
 			if self.COMMON == True:
-				if platform.system() == "Linux":
+				if platform.system() != "Windows":
 					self.WORDLIST = "/usr/share/crawly/db/common"
 				else:
-					self.WORDLIST = "crawly/db/common"
+					self.WORDLIST = "C:/Python27/Scripts/db/common"
 			else:
-				if platform.system() == "Linux":
+				if platform.system() != "Windows":
 					self.WORDLIST = "/usr/share/crawly/db/wordlist"
 				else:
-					self.WORDLIST = "crawly/db/wordlist"
+					self.WORDLIST = "C:/Python27/Scripts/db/wordlist"
 
 		self.multic = False
 		if len(self.CODES) > 1:
@@ -137,7 +137,7 @@ class Dirbrute:
 		self.run()
 
 	def brute(self, i, q):
-		URL  = http.URI(self.URL).prepare()
+		URL = http.URI(self.URL).prepare()
 
 		while True:
 			i = q.get()
@@ -234,10 +234,10 @@ class DNSBrute:
 		self.WORDLIST = WORDLIST
 
 		if self.WORDLIST is None:
-			if platform.system() == "Linux":
+			if platform.system() != "Windows":
 				self.WORDLIST = "/usr/share/crawly/db/subdomains"
 			else:
-				self.WORDLIST = "crawly/db/subdomains"
+				self.WORDLIST = "C:/Python27/Scripts/db/subdomains"
 
 		self.run()
 
@@ -255,7 +255,7 @@ class DNSBrute:
 				subdomain = i + "." + self.domain
 				dns.resolver.query(subdomain, 'a')
 
-				stdout.CLI(self.c.PASS + "Found : %s" % subdomain, True, "report.txt").write()
+				stdout.CLI(self.c.PASS, "Found : %s" % subdomain, True, "report.txt").write()
 
 			except dns.resolver.NXDOMAIN, dns.resolver.NoAnswer:
 				pass

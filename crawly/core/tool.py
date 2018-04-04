@@ -114,6 +114,7 @@ class Tools:
 		cd ~
 		rm -rf /tmp/crawly/
 		"""
+		#win_script = """ """
 
 		if platform.system() == "Windows":
 			raise WindowsError("Can't upgrade crawly at this time on windows host. --> https://github.com/ZenixIs/Crawly")
@@ -127,3 +128,4 @@ class Tools:
 
 		else:
 			print(self.c.ERROR + "Can't upgrade crawly... Latest version installed [%s]" %(str(current_version)))
+
