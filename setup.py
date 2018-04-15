@@ -26,9 +26,10 @@ if platform.system() != "Windows":
 
 else:
     script = '''
+    copy README.md C:\Program Files\Crawly\
+    md C:\Program Files\Crawly\db\
     cd crawly\db\
-    md C:\Python27\Scripts\db\
-    copy * C:\Python27\Scripts\db\
+    copy * C:\Program Files\Crawly\db\
     '''
     os.system(script)
 

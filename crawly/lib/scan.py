@@ -123,12 +123,12 @@ class Dirbrute:
 				if platform.system() != "Windows":
 					self.WORDLIST = "/usr/share/crawly/db/common"
 				else:
-					self.WORDLIST = "C:/Python27/Scripts/db/common"
+					self.WORDLIST = "C:/Program Files/Crawly/db/common"
 			else:
 				if platform.system() != "Windows":
 					self.WORDLIST = "/usr/share/crawly/db/wordlist"
 				else:
-					self.WORDLIST = "C:/Python27/Scripts/db/wordlist"
+					self.WORDLIST = "C:/Program Files/Crawly/db/wordlist"
 
 		self.multic = False
 		if len(self.CODES) > 1:
@@ -237,7 +237,7 @@ class DNSBrute:
 			if platform.system() != "Windows":
 				self.WORDLIST = "/usr/share/crawly/db/subdomains"
 			else:
-				self.WORDLIST = "C:/Python27/Scripts/db/subdomains"
+				self.WORDLIST = "C:/Program Files/Crawly/db/subdomains"
 
 		self.run()
 
