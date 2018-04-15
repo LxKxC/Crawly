@@ -112,10 +112,11 @@ class Dirbrute:
 		self.URL = URL
 		self.AGENT = AGENT
 		self.COMMON = COMMON
+		self.WORDLIST = WORDLIST
 		self.THREADS = THREADS
 		self.CODES = CODES
+		self.REPORT = REPORT
 		self.OUTPUT = OUTPUT
-		self.WORDLIST = WORDLIST
 
 		# Grrrrrr windows...
 		if self.WORDLIST is None:
@@ -155,25 +156,25 @@ class Dirbrute:
 				
 				if len(out.read()):
 					if ".pl" in link:
-						stdout.CLI(self.c.PASS, "[shellshock?]: %s"%(link), True, "report.txt").write()
+						stdout.CLI(self.c.PASS, "[shellshock?]: %s"%(link), self.REPORT, self.OUTPUT).write()
 					elif ".cgi" in link:
-						stdout.CLI(self.c.PASS, "[shellshock?]: %s"%(link), True, "report.txt").write()
+						stdout.CLI(self.c.PASS, "[shellshock?]: %s"%(link), self.REPORT, self.OUTPUT).write()
 					elif ".sh" in link:
-						stdout.CLI(self.c.PASS, "[shellshock?]: %s"%(link), True, "report.txt").write()
+						stdout.CLI(self.c.PASS, "[shellshock?]: %s"%(link), self.REPORT, self.OUTPUT).write()
 
 					else:
-						stdout.CLI(self.c.PASS, "Found [%d]: %s" %(out.code, link), True, "report.txt").write()
+						stdout.CLI(self.c.PASS, "Found [%d]: %s" %(out.code, link), self.REPORT, self.OUTPUT).write()
 
 			except urllib2.HTTPError as e:
 				if self.multic == True:
 					for code in self.CODES:
 						if int(code) == e.code:
-							stdout.CLI(self.c.SEMI, "Found [%d]: %s" %(out.code, link), True, "report.txt").write()
+							stdout.CLI(self.c.SEMI, "Found [%d]: %s" %(out.code, link), self.REPORT, self.OUTPUT).write()
 				else:
 					self.CODES = str(self.CODES).strip('[]')
 					self.CODES = str(self.CODES).strip("'")
 					if int(self.CODES) == e.code:
-						stdout.CLI(self.c.SEMI, "Found [%d]: %s" %(out.code, link), True, "report.txt").write()
+						stdout.CLI(self.c.SEMI, "Found [%d]: %s" %(out.code, link), self.REPORT, self.OUTPUT).write()
 				
 				pass
 
@@ -226,12 +227,14 @@ class DNSBrute:
 	This class brute some
 	subdomains of an host
 	'''
-	def __init__(self, URL, THREADS, WORDLIST):
+	def __init__(self, URL, THREADS, WORDLIST, REPORT, OUTPUT):
 		self.tools = core.Tools()
 		self.c = head.Strings()
 		self.domain = URL
 		self.THREADS = THREADS
 		self.WORDLIST = WORDLIST
+		self.REPORT = REPORT
+		self.OUTPUT = OUTPUT
 
 		if self.WORDLIST is None:
 			if platform.system() != "Windows":
@@ -255,7 +258,7 @@ class DNSBrute:
 				subdomain = i + "." + self.domain
 				dns.resolver.query(subdomain, 'a')
 
-				stdout.CLI(self.c.PASS, "Found : %s" % subdomain, True, "report.txt").write()
+				stdout.CLI(self.c.PASS, "Found : %s" % subdomain, self.REPORT, self.OUTPUT).write()
 
 			except dns.resolver.NXDOMAIN, dns.resolver.NoAnswer:
 				pass

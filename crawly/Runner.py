@@ -157,7 +157,7 @@ class Init:
 				if options.wordlist:
 					wordlist = options.wordlist
 
-				s.DNSBrute(URL, THREADS, wordlist)
+				s.DNSBrute(URL, THREADS, wordlist, REPORT, OUTPUT)
 				sys.exit(0)
 
 			print(self.c.OOPS + "Humm, i don't have enough options to work, mate :)")
@@ -191,6 +191,9 @@ class Init:
 			'''
 			Option file act like url option
 			but can read multiples URLs
+
+			TODO: Change the work process
+			of this option...
 			'''
 			if (options.dir and options.common):
 				print(self.c.ERROR + "Theses options are in conflict. Use only [--dir] or [--common], not both.")
@@ -225,21 +228,21 @@ class Init:
 					if options.wordlist:
 						wordlist = options.wordlist
 
-					s.Dirbrute(URL2, agent, common, wordlist, THREADS, HTTP_CODE)
+					s.Dirbrute(URL2, agent, common, wordlist, THREADS, HTTP_CODE, REPORT, OUTPUT)
 
 				elif options.common:
 					common = True
 					if options.useragent:
 						agent = True
 
-					s.Dirbrute(URL2, agent, common, wordlist, THREADS, HTTP_CODE)
+					s.Dirbrute(URL2, agent, common, wordlist, THREADS, HTTP_CODE, REPORT, OUTPUT)
 
 				elif options.dns:
 					wordlist = None
 					if options.wordlist:
 						wordlist = options.wordlist
 
-					s.DNSBrute(URL2, THREADS, wordlist)
+					s.DNSBrute(URL2, THREADS, wordlist, REPORT, OUTPUT)
 
 		elif options.framework:
 			#print self.c.OH + "It's an hidden feature well done..."

