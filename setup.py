@@ -25,13 +25,7 @@ if platform.system() != "Windows":
     os.system("bash -c '%s'" %script)
 
 else:
-    script = '''
-    copy README.md C:\Program Files\Crawly\
-    md C:\Program Files\Crawly\db\
-    cd crawly\db\
-    copy * C:\Program Files\Crawly\db\
-    '''
-    os.system(script)
+    os.system("start install.bat")
 
 setup(
     name = "Crawly",
