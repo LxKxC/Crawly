@@ -4,7 +4,7 @@
 
 **Crawly is an open source multi-threaded web scanner and simple penetration testing tool.**
 
-Crawly is developed in [Python](https://www.python.org/) by **Helix/@Jean-Mi**, for the **DGSquad** with help of MorpheusTor (Langage correction)
+Crawly is developed in [Python](https://www.python.org/) by **Helix/@Jean-Mi**, with help of MorpheusTor (Langage correction)
 
 **(Warning) Crawly at this time, works only on Py2.7**
 
