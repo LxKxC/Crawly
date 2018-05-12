@@ -9,6 +9,7 @@ import platform
 from core import headers as heads
 from core import tool
 from core import errors
+from core import version
 from lib import scan as s
 from lib import attack as a
 from lib import framework as f
@@ -17,6 +18,7 @@ class Init:
 	def __init__(self):
 		self.c = heads.Strings()
 		self.help = heads.Strings().help()
+		self.version = version.__version__
 		self.usage = heads.Strings().usage()
 		self.headers = heads.Strings().randheaders()
 		self.tool = tool.Tools()
@@ -28,6 +30,7 @@ class Init:
 		parser = OptionParser(add_help_option=False)
 		parser.add_option("-h", "--help", dest="help", action="store_true")
 		parser.add_option("--usage", action="store_true")
+		parser.add_option("--version", "-v", action="store_true")
 		parser.add_option("--check-update", dest="update", action="store_true")
 		parser.add_option("--upgrade", action="store_true")
 		parser.add_option("-u", "--url")
@@ -100,7 +103,7 @@ class Init:
 				print(random.choice(self.headers))
 		# Windows can't read some headers... :(
 
-		if not (options.help or options.url or options.attack or options.usage or options.file or options.update or options.upgrade or options.framework):
+		if not (options.help or options.url or options.attack or options.usage or options.file or options.update or options.upgrade or options.framework or options.version):
 			print(self.c.ERROR + "Not enough options.")
 			print(self.c.ERROR + "Type 'crawly -[h/--help]' to see available options.")
 
@@ -110,9 +113,12 @@ class Init:
 		elif options.usage:
 			print(self.usage)
 
+		elif option.version:
+			print(self.c.INFO + "Crawly version: %s" %(self.version))
+
 		elif options.url:
 			if (options.dir and options.common):
-				print(self.c.ERROR + "Theses options are in conflict. Use only [--dir] or [--common], not both.")
+				print(self.c.ERROR + "These options are in conflict. Use only [--dir] or [--common], not both.")
 				sys.exit(1)
 
 			## Common is set to false while you don't use --common option.

@@ -30,6 +30,8 @@ Go to directory:
 	python2.7 setup.py install
 
 The windows setup can fail, you can fix the errors by installing the requirements with pip.
+	
+	pip install -r requirements.txt
 
 Then
 	
@@ -48,33 +50,6 @@ Show usage:
 
 	crawly --usage
 
-Simple Documentation
-----
-
-Crawly has 3 scan modules :
-
-	'from crawly.lib import scan'
-	Crawl()
-	Dirbrute()
-	DNSBrute() 
-
-and at this time 5 simple attack scripts:
-
-	'from crawly.lib import attack'
-	Shellshock()
-	Bashdoor()
-	HTMLBrute()
-	HTTPBrute()
-	SSHBrute() # I'm working on it
-
-And some little tools:
-
-	'from crawly.core import tool'
-	GetHostInfos()
-	ReplacingURL()
-	PrintHostInfos()
-	randomagent()
-
 How to use the functions (example):
 
 	>>> from crawly.lib import scan as s
@@ -84,6 +59,8 @@ How to use the functions (example):
 	...
 	>>>
 	>>> help(s.Dirbrute) # To see the methods in the __init__
+
+See the complete documentation to **doc/**
 
 ### TODO
 

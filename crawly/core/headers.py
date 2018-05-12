@@ -99,6 +99,7 @@ class Strings:
 \033[1mBase Options:\033[0m
     [-h/--help] -- Print help.
     [--usage] -- Print some samples of program usage.
+    [-v/--version] -- Print version.
     [--quiet] -- Don't print headers.
     [--check-update] -- Check if crawly is up to date.
     [--upgrade] -- Upgrade crawly.

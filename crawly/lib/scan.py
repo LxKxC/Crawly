@@ -138,6 +138,7 @@ class Dirbrute:
 		self.run()
 
 	def brute(self, i, q):
+		# http://site.com/path/
 		URL = http.URI(self.URL).prepare()
 
 		while True:
