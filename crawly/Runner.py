@@ -108,12 +108,12 @@ class Init:
 			print(self.c.ERROR + "Type 'crawly -[h/--help]' to see available options.")
 
 		elif options.help:
-			print(self.help)
+                    print(self.help)
 
 		elif options.usage:
 			print(self.usage)
 
-		elif option.version:
+		elif options.version:
 			print(self.c.INFO + "Crawly version: %s" %(self.version))
 
 		elif options.url:
