@@ -55,7 +55,7 @@ How to use the functions (example):
 	>>> from crawly.lib import scan as s
 	>>> s.Crawl("www.google.com", True) # True is for a random-agent or not.
 	[!] Request under random User-Agent.
-	[+] Found URL : http://www.google.ch/setprefs?sig=0_87XNjV5P2-tqXi8BJEEeNKAQVg8%3D&amp;mp
+	[+] Found URL : http://www.google.ch/set...
 	...
 	>>>
 	>>> help(s.Dirbrute) # To see the methods in the __init__
