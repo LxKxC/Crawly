@@ -231,7 +231,7 @@ class DNSBrute:
 	def __init__(self, URL, THREADS, WORDLIST, REPORT, OUTPUT):
 		self.tools = core.Tools()
 		self.c = head.Strings()
-		self.domain = URL
+		self.domain = http.URI(URL).host()
 		self.THREADS = THREADS
 		self.WORDLIST = WORDLIST
 		self.REPORT = REPORT
