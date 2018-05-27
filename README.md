@@ -51,7 +51,7 @@ Show usage:
 	crawly --usage
 
 How to use the functions (example):
-
+```python
 	>>> from crawly.lib import scan as s
 	>>> s.Crawl("www.google.com", True) # True is for a random-agent or not.
 	[!] Request under random User-Agent.
@@ -59,6 +59,7 @@ How to use the functions (example):
 	...
 	>>>
 	>>> help(s.Dirbrute) # To see the methods in the __init__
+```
 
 See the complete documentation to **doc/**
 
