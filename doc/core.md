@@ -52,3 +52,34 @@ There is many colors:
 ## HTTP module
 
 This file is an HTTP module to replace URL, like Ruby. [HTTP module in Ruby](https://ruby-doc.org/stdlib-2.4.2/libdoc/net/http/rdoc/Net/HTTP.html)
+
+```python
+  class URI:
+    ...
+    # Contains
+    port()
+    host()
+    path()
+    prepare()
+
+>>> from crawly import http
+>>> uri = http.URI("http://test.com/path")
+>>> uri.port()
+80
+>>> uri.host()
+'test.com'
+>>> uri.path()
+'/path'
+>>> uri.prepare()
+'http://test.com/path/'
+```
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
