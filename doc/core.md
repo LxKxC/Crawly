@@ -33,7 +33,7 @@ Strings can detect which platform is used and adapt to unix or windows.
       ...
 
 >>> color = Strings()
->>>  print color.R + "RED msg" + color.O
+>>> print color.R + "RED msg" + color.O
 ```
 
 There is many colors:
