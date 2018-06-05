@@ -74,7 +74,21 @@ This file is an HTTP module to replace URL, like Ruby. [HTTP module in Ruby](htt
 'http://test.com/path/'
 ```
   
-  
+## Stdout file
+
+This file is not realy useful for you.. It is a wrapped print who can avoid threads print errors
+
+```python
+  class CLI(COLOR="", MSG=""):
+    write()
+   
+ >>> stdout.CLI("Msg").write()
+Msg
+>>> stdout.CLI("\033[1m", "bold msg").write()
+bold msg
+```
+
+## Tool 
   
   
   
