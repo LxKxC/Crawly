@@ -82,7 +82,7 @@ This file is not realy useful for you.. It is a wrapped print who can avoid thre
   class CLI(COLOR="", MSG=""):
     write()
    
- >>> stdout.CLI("Msg").write()
+>>> stdout.CLI("Msg").write()
 Msg
 >>> stdout.CLI("\033[1m", "bold msg").write()
 bold msg
