@@ -33,6 +33,7 @@ class Init:
 		parser.add_option("--version", "-v", action="store_true")
 		parser.add_option("--check-update", dest="update", action="store_true")
 		parser.add_option("--upgrade", action="store_true")
+		parser.add_option("--refresh", action="store_true")
 		parser.add_option("-u", "--url")
 		parser.add_option("-f", "--file", help="url file")
 		parser.add_option("-o", "--output")
@@ -76,6 +77,7 @@ class Init:
 		USERFIELD = options.userfield
 		PASSFIELD = options.passfield
 		ERRORMSG = options.errmsg
+		refresh = False
 
 		if HTTP_CODE is not None:
 			if " " in HTTP_CODE:
@@ -103,7 +105,7 @@ class Init:
 				print(random.choice(self.headers))
 		# Windows can't read some headers... :(
 
-		if not (options.help or options.url or options.attack or options.usage or options.file or options.update or options.upgrade or options.framework or options.version):
+		if not (options.help or options.url or options.attack or options.usage or options.file or options.update or options.upgrade or options.framework or options.version or options.refresh):
 			print(self.c.ERROR + "Not enough options.")
 			print(self.c.ERROR + "Type 'crawly -[h/--help]' to see available options.")
 
@@ -260,6 +262,10 @@ class Init:
 		elif options.update:
 			self.tool.CheckUpdate()
 			sys.exit(0)
+		
+		elif options.refresh:
+			refresh = True
+			self.tool.Upgrade(refresh)
 
 		elif options.upgrade:
 			self.tool.Upgrade()
