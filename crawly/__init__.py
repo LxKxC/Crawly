@@ -14,7 +14,7 @@ from core.tool import Tools
 # < Lib files >
 # Scan module
 from lib.scan import Crawl
-from lib.scan import DirBrute
+from lib.scan import Dirbrute
 from lib.scan import DNSBrute
 # Attack module
 from lib.attack import Shellshock
