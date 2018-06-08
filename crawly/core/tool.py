@@ -112,7 +112,7 @@ class Tools:
 		cd /tmp/crawly
 		sudo python2.7 setup.py install
 		cd ~
-		rm -rf /tmp/crawly/
+		sudo rm -rf /tmp/crawly/
 		"""
 		#win_script = """ """
 
