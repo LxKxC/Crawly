@@ -261,7 +261,7 @@ class DNSBrute:
 
 				stdout.CLI(self.c.PASS, "Found : %s" % subdomain, self.REPORT, self.OUTPUT).write()
 
-			except dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.NoNameservers:
+			except (dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.NoNameservers):
 				pass
 			except TypeError:
 				pass
