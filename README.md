@@ -52,13 +52,14 @@ Show usage:
 
 How to use the functions (example):
 ```python
-	>>> from crawly.lib import scan as s
-	>>> s.Crawl("www.google.com", True) # True is for a random-agent or not.
+	>>> from crawly import Crawl
+	>>> Crawl("http://www.google.com", True) # True is for a random-agent or not.
 	[!] Request under random User-Agent.
-	[+] Found URL : http://www.google.ch/set...
+	[+] Found URL : http://www.google.ch/
 	...
-	>>>
-	>>> help(s.Dirbrute) # To see the methods in the __init__
+	>>> 
+	>>> from crawly import Dirbrute
+	>>> help(Dirbrute) # To see __init__ needed variables
 ```
 
 See the complete documentation to **doc/**
