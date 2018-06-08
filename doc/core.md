@@ -31,7 +31,7 @@ Strings can detect which platform is used and adapt to unix or windows.
 ```python
   class Strings:
       ...
-
+>>> from crawly import Strings
 >>> color = Strings()
 >>> print color.R + "RED msg" + color.O
 ```
@@ -62,8 +62,8 @@ This file is an HTTP module to replace URL, like Ruby. [HTTP module in Ruby](htt
     path()
     prepare()
 
->>> from crawly import http
->>> uri = http.URI("http://test.com/path")
+>>> from crawly import URI
+>>> uri = URI("http://test.com/path")
 >>> uri.port()
 80
 >>> uri.host()
@@ -81,19 +81,32 @@ This file is not realy useful for you.. It is a wrapped print who can avoid thre
 ```python
   class CLI(COLOR="", MSG=""):
     write()
-   
->>> stdout.CLI("Msg").write()
+
+>>> from crawly import CLI
+>>> CLI("Msg").write()
 Msg
->>> stdout.CLI("\033[1m", "bold msg").write()
+>>> CLI("\033[1m", "bold msg").write()
 bold msg
 ```
 
 ## Tool 
   
-  
-  
-  
-  
-  
+ Tool contains a lot of methods, but only two are usefull for you.
+ 
+ ```python
+  class Tools:
+      PrintHostInfos()
+      randomagent()
+      
+>>> from crawly import Tools
+>>> Tools().PrintHostInfos("https://google.com/")
+[INFO] URL to scan : https://google.com/
+[INFO] Server IP : 216.58.204.142
+[INFO] Port : 443
+[INFO] Server : gws
+>>>
+>>> Tools.randomagent()
+'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8) Gecko/20060118 Firefox/1.5'
+```
   
   
