@@ -102,7 +102,7 @@ class Tools:
 
 		return float(curr)
 
-	def Upgrade(self):
+	def Upgrade(self, refresh):
 		'''
 		This function upgrade crawly
 		via git :)
@@ -121,11 +121,20 @@ class Tools:
 
 		current_version = self.GetVersion()
 
-		if current_version > self.v:
-			print(self.c.INFO + "Let's upgrade Crawly...")
-			os.system("bash -c '%s'" % (script))
-			print(self.c.OH + "Crawly is up-to-date :)")
-
+		if refresh == False:
+			if current_version > self.v:
+				print(self.c.INFO + "Let's upgrade Crawly...")
+				os.system("bash -c '%s'" % (script))
+				print(self.c.OH + "Crawly is up-to-date :)")
+			else:
+				print(self.c.ERROR + "Can't upgrade crawly... Latest version installed [%s]" %(str(current_version)))
+	
 		else:
-			print(self.c.ERROR + "Can't upgrade crawly... Latest version installed [%s]" %(str(current_version)))
-
+			if current_version > self.v:
+				print(self.c.INFO + "Let's upgrade Crawly...")
+				os.system("bash -c '%s'" % (script))
+				print(self.c.OH + "Crawly is up-to-date :)")
+			else:
+				print(self.c.INFO + "Refreshing files...")
+				os.system("bash -c '%s'" %(script))
+				print(self.c.INFO + "Crawly files are refreshed")
