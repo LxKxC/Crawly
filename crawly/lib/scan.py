@@ -30,7 +30,7 @@ class Crawl:
 	option because it's not really
 	usefull.
 	'''
-	def __init__(self, URL, AGENT):
+	def __init__(self, URL, AGENT=True):
 		self.c = head.Strings()
 		#self.OUTPUT = "/usr/share/crawly/report.txt"
 		self.tools = core.Tools()
@@ -228,7 +228,7 @@ class DNSBrute:
 	This class brute some
 	subdomains of an host
 	'''
-	def __init__(self, URL, THREADS, WORDLIST, REPORT, OUTPUT):
+	def __init__(self, URL, THREADS=35, WORDLIST=None, REPORT=False, OUTPUT=None):
 		self.tools = core.Tools()
 		self.c = head.Strings()
 		self.domain = http.URI(URL).host()
