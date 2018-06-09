@@ -53,7 +53,7 @@ Show usage:
 How to use the functions (example):
 ```python
 	>>> from crawly import Crawl
-	>>> Crawl("http://www.google.com", True) # True is for a random-agent or not.
+	>>> Crawl("http://www.google.com")
 	[!] Request under random User-Agent.
 	[+] Found URL : http://www.google.ch/
 	...
@@ -64,11 +64,4 @@ How to use the functions (example):
 
 See the complete documentation to **doc/**
 
-### TODO
-
-- [x] Add options file to brute many URLs.
-- [x] Add some error messages.
-- [x] Dev SSH and HTML bruteforcer.
-- [x] Add best functions to the setup.
-- [x] Adding safe print with threads.
-- [ ] Proxy pivoting option (requesting mode)
+ZenixIs, 2018.
