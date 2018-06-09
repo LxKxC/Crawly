@@ -79,6 +79,14 @@ class Init:
 		ERRORMSG = options.errmsg
 		refresh = False
 
+		# Printing headers
+		if not options.quiet:
+			if platform.system() == "Windows":
+				print(self.headers[1])
+			else:
+				print(random.choice(self.headers))
+		# Windows can't read some headers... :(
+		
 		if HTTP_CODE is not None:
 			if " " in HTTP_CODE:
 				print(self.c.ERROR + "Option -c must be declared like that : -c 403,302.")
@@ -96,14 +104,6 @@ class Init:
 		REPORT = False
 		if OUTPUT:
 			REPORT = True
-
-		# Printing headers
-		if not options.quiet:
-			if platform.system() == "Windows":
-				print(self.headers[1])
-			else:
-				print(random.choice(self.headers))
-		# Windows can't read some headers... :(
 
 		if not (options.help or options.url or options.attack or options.usage or options.file or options.update or options.upgrade or options.framework or options.version or options.refresh):
 			print(self.c.ERROR + "Not enough options.")
