@@ -36,9 +36,13 @@ class Tools:
 			sys.exit(1)
 
 		PORT = str(URI.port())
-
-		r = requests.get(URL)
-
+		
+		try:
+			r = requests.get(URL)
+		except requests.exceptions.SSLError:
+			print(self.c.ERROR + "SSLError, please retry with an http connection")
+			sys.exit(1)
+			
 		try:
 			SERVER = r.headers['Server']
 		except KeyError:
