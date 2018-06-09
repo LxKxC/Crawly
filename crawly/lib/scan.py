@@ -105,8 +105,8 @@ class Dirbrute:
 	an host.
 	With multi-threads.
 	'''
-	def __init__(self, URL, AGENT, COMMON, WORDLIST, 
-		THREADS, CODES, REPORT, OUTPUT):
+	def __init__(self, URL, AGENT=True, COMMON=False, WORDLIST=None, 
+		THREADS=35, CODES=["200"], REPORT=False, OUTPUT=None):
 		self.tools = core.Tools()
 		self.c = head.Strings()
 		self.URL = URL
