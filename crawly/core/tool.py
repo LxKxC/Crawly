@@ -40,7 +40,7 @@ class Tools:
 		try:
 			r = requests.get(URL)
 		except requests.exceptions.SSLError:
-			print(self.c.ERROR + "SSLError, please retry with an http connection")
+			print(self.c.ERROR + "SSLError, please retry with an http connection.")
 			sys.exit(1)
 			
 		try:
