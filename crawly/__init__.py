@@ -11,7 +11,7 @@ from core.stdout import CLI
 # Importing tool module
 from core.tool import Tools
 # Importing crawly version
-from core import version
+from core.version import __version__
 #
 # < Lib files >
 # Scan module
