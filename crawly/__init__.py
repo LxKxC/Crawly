@@ -10,6 +10,8 @@ from core.http import URI
 from core.stdout import CLI
 # Importing tool module
 from core.tool import Tools
+# Importing crawly version
+from core import version
 #
 # < Lib files >
 # Scan module
