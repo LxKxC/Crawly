@@ -1,3 +1,7 @@
+'''
+Find the crawly documentation at :
+>>> https://github.com/ZenixIs/Crawly/tree/master/doc
+'''
 # < Core files >
 # Importing error classes
 from core.errors import WindowsError
