@@ -132,6 +132,7 @@ class Tools:
 				print(self.c.OH + "Crawly is up-to-date :)")
 			else:
 				print(self.c.ERROR + "Can't upgrade crawly... Latest version installed [%s]" %(str(current_version)))
+				print(self.c.INFO + "Try to use [--refresh] option, to refreshing files from github.")
 	
 		else:
 			if current_version > self.v:
