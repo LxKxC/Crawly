@@ -268,7 +268,7 @@ class Init:
 			self.tool.Upgrade(refresh)
 
 		elif options.upgrade:
-			self.tool.Upgrade()
+			self.tool.Upgrade(refresh)
 			sys.exit(0)
 
 def run():
