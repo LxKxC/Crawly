@@ -2,6 +2,12 @@
 Find the crawly documentation at :
 >>> https://github.com/ZenixIs/Crawly/tree/master/doc
 '''
+# Infos
+__author__    = "helix"
+__copyright__ = "Copyright (c) 2018, Helix." 
+__credits__   = ["MorpheusTor"]
+# __version__ = Defined in crawly/core/version.py
+
 # < Core files >
 # Importing error classes
 from core.errors import WindowsError
