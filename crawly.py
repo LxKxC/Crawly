@@ -52,6 +52,11 @@ DNSBrute()
 | WORDLIST = None/"A/Path/to" 
 | (If None, a wordlist will be used in db/)
 '''
+
+# Avoiding *.pyc files.
+import sys
+sys.dont_write_bytecode = True
+
 __author__	= "helix"
 __copyright__ 	= "Copyright (c) 2018, Helix." 
 __credits__ 	= ["MorpheusTor"]
