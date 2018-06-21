@@ -56,12 +56,6 @@ DNSBrute()
 # Avoiding *.pyc files.
 import sys
 sys.dont_write_bytecode = True
-
-__author__	= "helix"
-__copyright__ 	= "Copyright (c) 2018, Helix." 
-__credits__ 	= ["MorpheusTor"]
-# __version__ 	= Defined in crawly/core/version.py
-
 # Modules:
 from crawly import Runner
 
