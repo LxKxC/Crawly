@@ -29,7 +29,7 @@ This file contains scanning classes of crawly. Each class instancied is auto run
 ```
 ```
 AGENT = True for a random user-agent
-COMMON = True for a wordlist with most common directorys (this option cannot work with a wordlist != None)
+COMMON = True for a wordlist with most common directories (this option cannot work with a wordlist != None)
 WORDLIST = "/path/to/word.txt", if WORDLIST is None a wordlist will be used in db/ directory
 THREADS = int for the number of threads
 CODES = list of HTTP codes to test, default 200
