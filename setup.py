@@ -21,7 +21,7 @@ if platform.system() != "Windows":
     mkdir /usr/share/crawly/
     mkdir /usr/share/crawly/db/
     cp crawly/db/* /usr/share/crawly/db/
-    cp crawly/doc/* /usr/share/crawly/doc/
+    cp -r doc/ /usr/share/crawly/
     '''
     os.system("bash -c '%s'" %script)
 
