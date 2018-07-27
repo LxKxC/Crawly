@@ -213,7 +213,7 @@ class HTTPBrute:
 
 			if platform.system() != "Windows":
 				# There's some print fails here on windows.
-				sys.stdout.write(self.c.INFO + "Passwords to test: [%d]\r" % q.qsize())
+				sys.stdout.write(self.c.INFO + "Passwords to test: %d\r" % q.qsize())
 				sys.stdout.flush()
 
   	def run(self):
