@@ -187,7 +187,7 @@ class HTTPBrute:
 
 		self.run()
 
-	def brute(self, q):
+	def brute(self, i, q):
 
 		URL = http.URI(self.URL).prepare()
 
@@ -237,7 +237,7 @@ class HTTPBrute:
 		print(self.c.INFO + "Using random User-Agent...")
 
 		for i in range(int(self.THREADS)):
-			worker = threading.Thread(target=self.brute, args=(q))
+			worker = threading.Thread(target=self.brute, args=(i, q))
 			worker.setDaemon(True)
 			worker.start()
 
