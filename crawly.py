@@ -3,13 +3,11 @@
 
 '''
 TODO: 
-	- create docs folder /!\
-
+	- lot of things...
 
 All rights reserved.
 --------------------
 This program mustn't be used as illegal purposes. ;)
-Crawly is a web scanner coded for the DGSquad.
 
 :: Performances:
 :: -------------
@@ -22,35 +20,13 @@ The entire developement of this program
 rotates around modules, So you can import one
 Of my modules in your programs if you want.
 
-Example:
---------
+Each method had his help string.
 
-from crawly.lib import scan as s
-s.Dirbrute("www.host.com", [True/False], [True/False], 20)
+Ex.
+----
 
-And the module will print all the directorys of 
-the host.
-
-Needs of the classes (scan.py):
-------------------------------
-Crawl()
---> (URL, USER-AGENT)
-| URL = str()
-| USER-AGENT = True/False
-
-Dirbrute()
---> (URL, USER-AGENT, COMMON, THREADS)
-| URL = str()
-| USER-AGENT = True/False
-| COMMON = True/False
-| THREADS = int(*)
-
-DNSBrute()
---> (DOMAIN, THREADS, WORDLIST)
-| DOMAIN = str()
-| THREADS = int(*)
-| WORDLIST = None/"A/Path/to" 
-| (If None, a wordlist will be used in db/)
+import crawly
+help(crawly)
 '''
 
 # Avoiding *.pyc files.
