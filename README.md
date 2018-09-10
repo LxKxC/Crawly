@@ -15,7 +15,7 @@ Platforms
 	Linux
 	MacOs
 
-Tested on ArchLinux(4.15.3-1-ARCH), Ubuntu(4.13), Debian, BackBox, Kali Linux(4.12.0-kali1-amd64), Windows 10.
+Tested on ArchLinux, Ubuntu, Debian, BackBox, Kali Linux, Windows 10.
 
 Installation
 ----
@@ -50,18 +50,7 @@ Show usage:
 
 	crawly --usage
 
-How to use the functions (example):
-```python
-	>>> from crawly import Crawl
-	>>> Crawl("http://www.google.com")
-	[!] Request under random User-Agent.
-	[+] Found URL : http://www.google.ch/
-	...
-	>>> 
-	>>> from crawly import Dirbrute
-	>>> help(Dirbrute) # To see __init__ needed variables
-```
 
-See the complete documentation to **doc/**
+See the complete documentation to **doc/**, to use crawly in your own program.
 
 ZenixIs, 2018.
