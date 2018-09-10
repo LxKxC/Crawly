@@ -22,8 +22,6 @@ Installation
 
 
 	git clone https://github.com/ZenixIs/Crawly.git
-
-Go to directory:
 	
 	cd Crawly/
 
