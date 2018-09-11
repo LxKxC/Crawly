@@ -10,7 +10,7 @@ Crawly is developed in [Python](https://www.python.org/) by **Helix/@Jean-Mi**, 
 
 ![screenshot](https://github.com/ZenixIs/Crawly/blob/master/screens/crawly_front.png)
 
-You can visit the [screenshots](https://github.com/Crawly/blob/master/screens/)
+You can visit the other [screenshots](https://github.com/Crawly/blob/master/screens/) here !
 
 Platforms
 ----
