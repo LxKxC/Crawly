@@ -25,7 +25,8 @@ class Strings:
             self.SEMI = self.Y + "[+] " + self.O
             self.OOPS = self.R + self.BOLD + "[OOPS!] " + self.O
             self.OH = self.G + self.BOLD + "[OH!] " + self.O
-        
+            self.PLUS = self.B + self.BOLD + "[+] " + self.O
+
         elif platform.system() == "Windows":
             init()
             # --> Windows colors
@@ -42,6 +43,7 @@ class Strings:
             self.SEMI = self.Y + "[+] " + self.O
             self.OOPS = self.R + self.BOLD + "[OOPS!] " + self.O
             self.OH = self.G + self.BOLD + "[OH!] " + self.O
+            self.PLUS + self.B + self.BOLD + "[+] " + self.O
 
     def randheaders(self):
         head = [self.BOLD + '''
@@ -130,6 +132,19 @@ class Strings:
 \033[1mVersion: '''+ self.version + self.O
         
         return helpstr
+
+    def FirstRun(self):
+        return '''
+\033[94m\033[1m[+]\033[0m\033[1m Welcome to Crawly!\033[0m
+
+        Type [crawly --help] or [crawly --usage]
+        to get all the options.
+
+        See the documentation in the directory
+        *doc/* to know how to use me ;)
+
+\033[93m\033[1mSee Ya! @Helix\033[0m
+        '''
 
     def usage(self):
         return '''

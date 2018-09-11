@@ -87,6 +87,11 @@ class Init:
 				print(random.choice(self.headers))
 		# Windows can't read some headers... :(
 		
+                if self.tool.isFirstRun() == False:
+                    print(heads.Strings().FirstRun())
+                    self.tool.UpFirstRun()
+                    sys.exit()
+
 		if HTTP_CODE is not None:
 			if " " in HTTP_CODE:
 				print(self.c.ERROR + "Option -c must be declared like that : -c 403,302.")

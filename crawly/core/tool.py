@@ -15,6 +15,8 @@ from . import http
 
 class Tools:
 	def __init__(self):
+                self.DIR = os.path.expanduser("~/.crawly/")
+                self.FILE = "run.check"
 		self.c = h.Strings()
 		self.v = float(version.__version__)
 
@@ -92,6 +94,39 @@ class Tools:
 		elif current_version == self.v:
 			print(self.c.INFO + "Crawly is up to date.")
 			print(self.c.INFO + "Version: %s" %(str(current_version)))
+        
+        def InitFirstRun(self):
+            '''
+            This function checks if crawly
+            is runned for the first time.
+            If yes a file will be created
+            Otherwise the program will run
+            as usual.
+            '''
+            result = 1
+            if platform.system() != "Windows":
+                if os.path.exists(self.DIR) == False:
+                    # Let's create the files.
+                    os.makedirs(self.DIR)
+                
+                    f = open(self.DIR + self.FILE, 'w')
+                    f.write("isRun=0")
+                    f.close()
+
+                with open(self.DIR + self.FILE, 'r') as check:
+                    result = int(check.read().split("isRun=")[1])
+
+            return result
+        
+        def isFirstRun(self):
+            if self.InitFirstRun() == 0:
+                return False
+            else:
+                return True
+
+        def UpFirstRun(self):
+            with open(self.DIR + self.FILE, "w") as file:
+                file.write("isRun=1")
 
 	def GetVersion(self):
 		URL = "https://github.com/ZenixIs/Crawly/blob/master/crawly/core/version.py"
