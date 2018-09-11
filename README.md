@@ -8,6 +8,8 @@ Crawly is developed in [Python](https://www.python.org/) by **Helix/@Jean-Mi**, 
 
 **(Warning) Crawly at this time, works only on Py2.7**
 
+![screenshot](https://github.com/ZenixIs/Crawly/blob/master/screens/crawly_front.png)
+
 Platforms
 ----
 
