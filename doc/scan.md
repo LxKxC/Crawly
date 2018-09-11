@@ -7,7 +7,11 @@
 This file contains scanning classes of crawly. Each class instancied is auto runned with the gived paremeters.
 
 # Crawler
-
+```
+# CLI command
+crawly -u https://www.google.com/ --crawl 
+crawly -u https://www.google.com/ --crawl --random-agent
+```
 ```python
   class Crawl:
     __init__(self, URL, AGENT=True)
@@ -18,6 +22,13 @@ This file contains scanning classes of crawly. Each class instancied is auto run
 ```
 
 # Dirbruter
+```
+# CLI commands
+crawly -u https://www.google.com/ --dir
+crawly -u https://www.google.com/ --common
+crawly -u https://www.google.com/ --dir --random-agent -c "200,302,403"
+crawly -u https://www.google.com/ --dir --output="/home/user/.crawly/report.txt" -t 40
+```
 ```python
   class Dirbrute:
     __init__(self, URL, AGENT=True, COMMON=False, WORDLIST=None, 
@@ -38,11 +49,17 @@ OUTPUT = None or "path/report.txt"
 ````
 
 # DNS bruter
-
+```
+# CLI commands
+crawly -u https://www.google.com/ --dns
+crawly -u https://www.google.com/ --dns -t 15
+crawly -u https://www.google.com/ --dns --output="/home/user/.crawly/report.txt" -t 40
+```
 ```python
   class DNSBrute:
     __init__(self, URL, THREADS=35, WORDLIST=None, REPORT=False, OUTPUT=None)
 
 >>> from crawly import DNSBrute
->>>
+>>> DNSBrute("https://www.google.com/")
+>>> DNSBrute("https://www.google.com/", WORDLIST="dns.list")
 ```
