@@ -38,10 +38,11 @@ from crawly import Runner
 class Crawly:
 	def __init__(self):
 		'''
-		Running Init() to lunch
+		Running run() function to lunch
 		the program.
 		'''
-		self.run = Runner.Init()
+		self.run = Runner.run()
 
 if __name__ == '__main__':
+	# Let's go ;)
 	Crawly()
