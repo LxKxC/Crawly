@@ -282,4 +282,9 @@ def run():
     To run the program with 
     console scripts.
     '''
-    Init()
+    colors = heads.Strings()
+    try:
+    	Init()
+    except KeyboardInterrupt:
+    	print("\n" + colors.INFO + "CTRL + C signal found! Exiting...")
+    	sys.exit(1)

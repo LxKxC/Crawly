@@ -168,6 +168,7 @@ class HTMLBrute:
 			worker = threading.Thread(target=self.brute, args=(i, q))
 			worker.setDaemon(True)
 			worker.start()
+			worker.join(600)
 
 		q.join()
 
@@ -240,6 +241,7 @@ class HTTPBrute:
 			worker = threading.Thread(target=self.brute, args=(i, q))
 			worker.setDaemon(True)
 			worker.start()
+			worker.join(600)
 
 		q.join()
 
@@ -278,5 +280,5 @@ class SSHBrute:
 				q.task_done()
 
 	def run(self):
-		# TODO
+		#XXX: TODO
 		pass
