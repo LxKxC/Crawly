@@ -99,7 +99,7 @@ class Crawl:
 		print(self.c.MED + "Found %s true URLs." %(num))
 		print(self.c.INFO + "Scan finished at "+time.strftime("%H:%M:%S"))
 
-class Dirbrute(threading.Thread):
+class Dirbrute:
 	'''
 	This class can dirbrute
 	an host.
@@ -107,7 +107,6 @@ class Dirbrute(threading.Thread):
 	'''
 	def __init__(self, URL, AGENT=True, COMMON=False, WORDLIST=None, 
 		THREADS=35, CODES=["200"], REPORT=False, OUTPUT=None):
-		threading.Thread.__init__(self)
 		self.tools = core.Tools()
 		self.c = head.Strings()
 		self.URL = URL
@@ -214,7 +213,7 @@ class Dirbrute(threading.Thread):
 		start = time.time()
 		for i in range(int(self.THREADS)):
 			worker = threading.Thread(target=self.brute, args=(i, q))
-			worker.daemon = True
+			worker.setDaemon(True)
 			worker.start()
 			worker.join(600)
 
