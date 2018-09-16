@@ -15,8 +15,8 @@ from . import http
 
 class Tools:
 	def __init__(self):
-                self.DIR = os.path.expanduser("~/.crawly/")
-                self.FILE = "run.check"
+		self.DIR = os.path.expanduser("~/.crawly/")
+		self.FILE = "run.check"
 		self.c = h.Strings()
 		self.v = float(version.__version__)
 
