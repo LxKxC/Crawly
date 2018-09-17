@@ -110,7 +110,7 @@ class HTMLBrute:
 	"admin", "list.lst", 35)
 	'''
 	def __init__(self, URL, USERFIELD="username", PASSFIELD="password", ERRORMSG="Error", 
-		USER="admin", WORDLIST, THREADS):
+		USER="admin", WORDLIST=None, THREADS=35):
 		self.c = head.Strings()
 		self.URL = URL
 		self.USERFIELD = USERFIELD
