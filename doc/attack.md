@@ -37,3 +37,4 @@ class HTMLBrute:
 
 >>> import crawly
 >>> crawly.HTMLBrute("http://test.com/admin.php", ERRORMSG="Login Error", USER="webmaster", WORDLIST="pass_list.lst", THREADS=35)
+```
