@@ -47,7 +47,7 @@ There is many colors:
    ...ERROR = RED + "[ERROR]" + RESET
    ...PASS = GREEN + "[+]" + RESET
    ...INFO = BLUE + BOLD + "[INFO]" + RESET
-   ...MED = YELLOX + "[~]" + RESET
+   ...MED = YELLOW + "[~]" + RESET
 ```
 ## HTTP module
 
