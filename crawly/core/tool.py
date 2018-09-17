@@ -18,7 +18,7 @@ class Tools:
 	def __init__(self):
 		self.DIR = os.path.expanduser("~/.crawly/")
 		self.FILE = "run.check"
-                self.MONTH_FILE = "month.check"
+		self.MONTH_FILE = "month.check"
 		self.c = h.Strings()
 		self.v = float(version.__version__)
 
