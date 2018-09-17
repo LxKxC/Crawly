@@ -3,6 +3,7 @@
 
 import sys
 import os
+import datetime
 import platform
 import socket
 import random
@@ -17,6 +18,7 @@ class Tools:
 	def __init__(self):
 		self.DIR = os.path.expanduser("~/.crawly/")
 		self.FILE = "run.check"
+                self.MONTH_FILE = "month.check"
 		self.c = h.Strings()
 		self.v = float(version.__version__)
 
@@ -95,6 +97,44 @@ class Tools:
 			print(self.c.INFO + "Crawly is up to date.")
 			print(self.c.INFO + "Version: %s" %(str(current_version)))
         
+        def NeedMonthUpdate(self):
+            month = self.InitMonthUpdate()
+            if month != datetime.datetime.now().month:
+                return True
+            else:
+                return False
+
+        def InitMonthUpdate(self):
+            '''
+            This function checks if
+            crawly needs an update
+            every months.
+            Works like InitFirstRun()
+            '''
+            result = datetime.datetime.now().month
+            if platform.system() != "Windows":
+                if os.path.isfile(self.DIR + self.MONTH_FILE) == False:
+                    f = open(self.DIR + self.MONTH_FILE, 'w')
+                    f.write("Month=%d" %(datetime.datetime.now().month))
+                    f.close()
+
+                with open(self.DIR + self.MONTH_FILE, 'r') as check:
+                    result = int(check.read().split("Month=")[1])
+
+            return result
+
+        def RunMonthUpdate(self):
+            if self.InitMonthUpdate() < datetime.datetime.now().month:
+                response = raw_input(self.c.PLUS + "Do you want to check if crawly is up-to-date and upgrade it ? [Y/N] > ").upper()
+                if response == "Y":
+                    print("")
+                    self.Upgrade(False)
+                else:
+                    print(self.c.INFO + "Exiting...")
+
+                with open(self.DIR + self.MONTH_FILE, 'w') as file:
+                    file.write("Month=%d" %(datetime.datetime.now().month))
+
         def InitFirstRun(self):
             '''
             This function checks if crawly

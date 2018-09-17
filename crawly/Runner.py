@@ -90,7 +90,12 @@ class Init:
                 if self.tool.isFirstRun() == False:
                     print(heads.Strings().FirstRun())
                     self.tool.UpFirstRun()
-                    sys.exit()
+                    sys.exit(0)
+
+                # Check every months for a new update.
+                if self.tool.NeedMonthUpdate() == True:
+                    self.tool.RunMonthUpdate()
+                    sys.exit(0)
 
 		if HTTP_CODE is not None:
 			if " " in HTTP_CODE:
