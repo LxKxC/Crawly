@@ -109,9 +109,8 @@ class HTMLBrute:
 	__init__("www.remote.url/admin/index", "usernamef", "passwordf", "Error",
 	"admin", "list.lst", 35)
 	'''
-	def __init__(self, URL, USERFIELD, PASSFIELD, ERRORMSG, 
-		USER, WORDLIST, THREADS):
-
+	def __init__(self, URL, USERFIELD="username", PASSFIELD="password", ERRORMSG="Error", 
+		USER="admin", WORDLIST, THREADS):
 		self.c = head.Strings()
 		self.URL = URL
 		self.USERFIELD = USERFIELD
@@ -122,8 +121,8 @@ class HTMLBrute:
 		self.WORDLIST = WORDLIST
 		self.THREADS = THREADS
 
-		if self.USER is None:
-			print(self.c.ERROR + "I need an username... [--user]")
+		if self.WORDLIST is None:
+			print(self.c.ERROR + "I need a wordlist... [--wordlist]")
 			sys.exit(1)
 
 		self.run()
