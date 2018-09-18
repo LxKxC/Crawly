@@ -39,6 +39,7 @@ class Init:
 		parser.add_option("-o", "--output")
 		parser.add_option("--crawl", action="store_true")
 		parser.add_option("--dir", action="store_true")
+                parser.add_option("--lfi", action="store_true")
 		parser.add_option("--random-agent", dest="useragent", action="store_true")
 		parser.add_option("--common", dest="common", action="store_true")
 		parser.add_option("--dns", action="store_true")
@@ -177,6 +178,14 @@ class Init:
 
 				s.DNSBrute(URL, THREADS, wordlist, REPORT, OUTPUT)
 				sys.exit(0)
+
+                        elif options.lfi:
+                            wordlist = None
+                            if options.wordlist:
+                                wordlist = options.wordlist
+
+                            s.LFIBrute(URL, wordlist, THREADS, REPORT, OUTPUT, agent)
+                            sys.exit(0)
 
 			print(self.c.OOPS + "Humm, i don't have enough options to work, mate :)")
 
