@@ -215,7 +215,7 @@ class Dirbrute:
 			worker = threading.Thread(target=self.brute, args=(i, q))
 			worker.setDaemon(True)
 			worker.start()
-			worker.join(600)
+			worker.join(1)
 
 		q.join()
 
@@ -288,8 +288,97 @@ class DNSBrute:
 			worker = threading.Thread(target=self.DNS, args=(i, q))
 			worker.setDaemon(True)
 			worker.start()
-			worker.join(600)
+			worker.join(1)
 
 		q.join()
 
 		print(self.c.INFO + "Scan finished at: "+time.strftime('%H:%M:%S'))
+
+
+class LFIBrute:
+        """
+        LFIBrute can scan for LFI vuln
+        on a URL, you need to give me
+        the full path...
+        ex: "http://test.com/index.php?vuln=1"
+        
+        Contributor: @Seepcko
+        """
+	def __init__(self, URL, WORDLIST=None, THREADS=15, REPORT=False, OUTPUT=None, AGENT=True):
+                self.c = head.Strings()
+                self.URL = URL
+                self.WORDLIST = WORDLIST
+                self.THREADS = THREADS
+		self.REPORT = REPORT
+		self.OUTPUT = OUTPUT
+		self.AGENT = AGENT
+
+		if(self.WORDLIST is None):
+			if(platform.system() != "Windows"):
+				self.WORDLIST = "/usr/share/crawly/db/lfi"
+			else:
+				self.WORDLIST = "C:/Program Files/Crawly/db/lfi"
+
+		if(http.URI(self.URL).isPath() == False):
+			print(self.c.ERROR, "You need to enter a path for example http://localhost/index.php?id=index")
+			sys.exit(0)
+
+		self.run()
+
+	def brute(self, i, q):
+
+		URL = http.URI(self.URL).prepare()
+		URL = self.URL.split("=")[0]
+		URL = URL + "="
+
+		while True:
+			i = q.get()
+			so = URL + i
+
+			if self.AGENT == True:
+				req = urllib2.Request(so, headers={'User-Agent': self.tools.randomagent()})
+			else:
+				req = urllib2.Request(so, headers={'User-Agent': 'Helix/:)'})
+
+			try:
+				out = urllib2.urlopen(req).read()
+
+				if("root:" in out):
+					stdout.CLI(self.c.PASS, "[lfi?]: %s"%(so), self.REPORT, self.OUTPUT).write()
+
+			except urllib2.HTTPError as e:
+				pass
+			except urllib2.URLError:
+				pass
+			finally:
+                                q.task_done()
+                                
+                        if platform.system() != "Windows":
+                            # There's some print fails here on windows.
+                            sys.stdout.write(self.c.INFO + "Remaining tests: %d\r" % q.qsize())
+                            sys.stdout.flush()
+                        
+                        if q.qsize() == 0:
+                            sys.stdout.write("\033[F") #back to previous line
+                            sys.stdout.write("\033[K") #clear line
+                            print("\n" + self.c.INFO + "Waiting for threads to exit...")
+                            sys.stdout.flush()
+
+
+	def run(self):
+		q = Queue.Queue()
+
+		with open(self.WORDLIST, "r") as l:
+			for line in l:
+				q.put(line.rstrip('\n\r'))
+
+		for i in range(int(self.THREADS)):
+			worker = threading.Thread(target=self.brute, args=(i, q))
+			worker.setDaemon(True)
+			worker.start()
+			worker.join(1)
+
+		q.join()
+
+                print(self.c.INFO + "Scan finished at: "+time.strftime('%H:%M:%S'))
+
