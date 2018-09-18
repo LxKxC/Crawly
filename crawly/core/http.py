@@ -61,6 +61,12 @@ class URI:
 		path = self.URL.split("/")[1:]
 		
 		return  "/" + "/".join(path)
+
+        def isPath(self):
+            if self.path() == "/":
+                return False
+            else:
+                return True
 		
 	def prepare(self):
 		# Prepare the URL, ready for
