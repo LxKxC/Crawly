@@ -320,7 +320,7 @@ class LFIBrute:
 				self.WORDLIST = "C:/Program Files/Crawly/db/lfi"
 
 		if(http.URI(self.URL).isPath() == False):
-			print(self.c.ERROR, "You need to enter a path for example http://localhost/index.php?id=index")
+			print(self.c.ERROR + "You need to enter a path for example http://localhost/index.php?id=index")
 			sys.exit(0)
 
 		self.run()
