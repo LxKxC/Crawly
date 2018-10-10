@@ -116,7 +116,10 @@ class Init:
 		if OUTPUT:
 			REPORT = True
 
-		if not (options.help or options.url or options.attack or options.usage or options.file or options.update or options.upgrade or options.framework or options.version or options.refresh):
+		if not (options.help or options.url or options.attack \
+                        or options.usage or options.file or options.update \
+                        or options.upgrade or options.framework \
+                        or options.version or options.refresh):
 			print(self.c.ERROR + "Not enough options.")
 			print(self.c.ERROR + "Type 'crawly -[h/--help]' to see available options.")
 
