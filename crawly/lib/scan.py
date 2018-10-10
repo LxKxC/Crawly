@@ -288,7 +288,7 @@ class DNSBrute:
 			worker = threading.Thread(target=self.DNS, args=(i, q))
 			worker.setDaemon(True)
 			worker.start()
-			worker.join(1)
+			worker.join(2)
 
 		q.join()
 
@@ -359,8 +359,8 @@ class LFIBrute:
                             sys.stdout.flush()
                         
                         if q.qsize() == 0:
-                            sys.stdout.write("\033[F") #back to previous line
-                            sys.stdout.write("\033[K") #clear line
+                            sys.stdout.write("\033[F") # Back to previous line
+                            sys.stdout.write("\033[K") # Clear line
                             print("\n" + self.c.INFO + "Waiting for threads to exit...")
                             sys.stdout.flush()
 
@@ -376,7 +376,7 @@ class LFIBrute:
 			worker = threading.Thread(target=self.brute, args=(i, q))
 			worker.setDaemon(True)
 			worker.start()
-			worker.join(1)
+			worker.join(2)
 
 		q.join()
 
