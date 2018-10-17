@@ -28,6 +28,7 @@ from core.version import __version__
 from lib.scan import Crawl
 from lib.scan import Dirbrute
 from lib.scan import DNSBrute
+from lib.scan import LFIBrute
 # Attack module
 from lib.attack import Shellshock
 from lib.attack import Bashdoor
