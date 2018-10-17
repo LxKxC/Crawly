@@ -1,0 +1,6 @@
+# Excluding files
+#
+# Python setup files
+Crawly.egg-info/
+build/
+dist/
