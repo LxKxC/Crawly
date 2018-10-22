@@ -100,6 +100,7 @@ class Strings:
     [-u/--url] www.google.com -- Specify URL.
     [--crawl] -- Enable crawling mode.
     [--dir] -- Enable dirbruter mode.
+    [--lfi] -- LFI scan.
     [--random-agent] -- Use random user agents.
     [--common] -- Brute force with common directorys, option --dir not needed.
     [--dns] -- Brute force subdomains of an host. The host mustn't have 'www.' or whatever
