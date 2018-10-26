@@ -102,7 +102,7 @@ class Strings:
     [--dir] -- Enable dirbruter mode.
     [--random-agent] -- Use random user agents.
     [--common] -- Brute force with common directorys, option --dir not needed.
-    [--dns] -- Brute force subdomains of an host. The host mustn't have 'www.' or whatever
+    [--dns] -- Brute force subdomains of an host. The host must not have 'www.' or something else.
     [-w/--wordlist] /path -- Specify a wordlist for option [--dns] and [--dir]
     [-t/--threads] 50 -- Number of threads. Default '35'.
     [-c] 200,302 -- HTTP codes to check. Default '200'.
