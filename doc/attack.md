@@ -4,7 +4,7 @@
 
 - [x] attack.py
 
-This file contains attacking classes of crawly. Each class instancied is auto runned with the gived paremeters.
+This file contains attacking classes of crawly. Each class instancied is auto runned with the given paremeters.
 
 # Shellshock / Bashdoor
 
