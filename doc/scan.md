@@ -4,7 +4,7 @@
 
 - [x] scan.py
 
-This file contains scanning classes of crawly. Each class instancied is auto runned with the gived paremeters.
+This file contains scanning classes of crawly. Each class instancied is auto runned with the given paremeters.
 
 # Crawler
 ```
