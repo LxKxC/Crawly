@@ -28,7 +28,7 @@ class Crawl:
 
 	I disabled the report
 	option because it's not really
-	usefull.
+	useful.
 	'''
 	def __init__(self, URL, AGENT=True):
 		self.c = head.Strings()
@@ -187,7 +187,7 @@ class Dirbrute:
 
 			if platform.system() != "Windows":
 				# There's some print fails here on windows.
-				sys.stdout.write(self.c.INFO + "Directorys to test: %d\r" % q.qsize())
+				sys.stdout.write(self.c.INFO + "Directories to test: %d\r" % q.qsize())
 				sys.stdout.flush()
 
 	def run(self):

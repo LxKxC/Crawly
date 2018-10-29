@@ -25,7 +25,7 @@ The file errors.py define two crawly errors to be raised.
 
 ## Headers
 
-This file contains predefined colored strings
+This file contains predefined colored strings,
 Strings can detect which platform is used and adapt to unix or windows.
 
 ```python
@@ -76,7 +76,7 @@ This file is an HTTP module to replace URL, like Ruby. [HTTP module in Ruby](htt
   
 ## Stdout file
 
-This file is not realy useful for you.. It is a wrapped print who can avoid threads print errors
+This file is not realy useful for you.. It is a wrapped print which can avoid threads print errors
 
 ```python
   class CLI(COLOR="", MSG=""):
@@ -91,7 +91,7 @@ bold msg
 
 ## Tool 
   
- Tool contains a lot of methods, but only two are usefull for you.
+ Tool contains a lot of methods, but only two are useful for you.
  
  ```python
   class Tools:
