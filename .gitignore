@@ -4,3 +4,5 @@
 Crawly.egg-info/
 build/
 dist/
+# Python compiled byte code
+*.pyc
