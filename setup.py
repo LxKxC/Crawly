@@ -15,7 +15,7 @@ version = re.search(
     ).group(1)
  
 # I need to copy the wordlist in a specific
-# path to run crawly from nowhere.
+# path to run crawly from every paths.
 if platform.system() != "Windows":
     script = '''
     mkdir /usr/share/crawly/
