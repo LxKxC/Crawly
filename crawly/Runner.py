@@ -134,7 +134,7 @@ class Init:
 
 		elif options.url:
 			if (options.dir and options.common):
-				print(self.c.ERROR + "These options are in conflict. Use only [--dir] or [--common], not both.")
+				print(self.c.ERROR + "Conflicting options. Use only [--dir] or [--common], not both.")
 				sys.exit(1)
 
 			## Common is set to false while you don't use --common option.
@@ -146,7 +146,7 @@ class Init:
 			try:
 				self.tool.PrintHostInfos(URL)
 			except errors.BadURLError:
-				print(self.c.ERROR + "BadURLError, i can't find http:// or https:// in this url.")
+				print(self.c.ERROR + "BadURLError, I cannot find http:// or https:// in this url.")
 				sys.exit(1)
 
 			if options.crawl:
