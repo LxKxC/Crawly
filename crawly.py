@@ -16,9 +16,9 @@ This program mustn't be used as illegal purposes. ;)
 :: Makes [100/150]requests/sec with 35
 :: threads
 
-The entire developement of this program
+The entire development of this program
 rotates around modules, So you can import one
-Of my modules in your programs if you want.
+of my modules in your programs if you want.
 
 Each method had his help string.
 
