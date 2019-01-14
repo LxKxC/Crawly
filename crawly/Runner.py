@@ -87,7 +87,7 @@ class Init:
 			else:
 				print(random.choice(self.headers))
 		# Windows can't read some headers... :(
-		
+
                 if self.tool.isFirstRun() == False:
                     print(heads.Strings().FirstRun())
                     self.tool.UpFirstRun()
@@ -103,7 +103,7 @@ class Init:
 				print(self.c.ERROR + "Option -c must be declared like that : -c 403,302.")
 				print(self.c.ERROR + "Please remove the spaces.")
 				sys.exit(1)
-			
+
 			elif "," in HTTP_CODE:
 				HTTP_CODE = HTTP_CODE.split(",")
 

@@ -4,7 +4,7 @@ Find the crawly documentation at :
 '''
 # Infos
 __author__    = "helix"
-__copyright__ = "Copyright (c) 2018, Helix." 
+__copyright__ = "Copyright (c) 2018, Helix."
 __credits__   = ["MorpheusTor"]
 # __version__ = Defined in crawly/core/version.py
 
